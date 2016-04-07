@@ -1,0 +1,60 @@
+﻿@model CoolProy.Models.Encap
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+ 
+
+<h3>Estas seguro de eliminar este registro?</h3>
+<fieldset>
+    <legend>SolicitudInspeccion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.solicitudinspeccion.idsolicitud)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.solicitudinspeccion.idsolicitud)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.solicitudinspeccion.fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.solicitudinspeccion.fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.solicitudinspeccion.referencias)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.solicitudinspeccion.referencias)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.solicitudinspeccion.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.solicitudinspeccion.descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.solicitudinspeccion.estado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.solicitudinspeccion.estado)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.solicitudinspeccion.Cliente.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.solicitudinspeccion.Cliente.nombre)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

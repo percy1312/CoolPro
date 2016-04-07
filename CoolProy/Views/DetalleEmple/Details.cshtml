@@ -1,0 +1,36 @@
+﻿@model CoolProy.Models.Det_empleado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Det_empleado</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Empleado.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Empleado.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Inspeccion.observaciones)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Inspeccion.observaciones)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.responsable)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.responsable)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

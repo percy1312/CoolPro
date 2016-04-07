@@ -1,0 +1,54 @@
+﻿@model CoolProy.Models.Empleado
+@using (Ajax.BeginForm("Create", "Empleado2", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
+{
+    
+    <div class="modal-body">
+
+
+             <div class="span6">
+        <div class="editor-label">
+            @Html.Label("Codigo")
+        </div>
+        <div class="editor-field" >
+           <input type="text" placeholder="Nro" readonly="true"/> 
+        </div>
+        </div>
+
+        <div class="editor-label">
+                @Html.LabelFor(model => model.nombre)
+            </div>
+            <div class="editor-field">
+                <input name="nombre" type="text" required="required" placeholder="Nombre" class="form-control" />
+                @*@Html.EditorFor(model => model.nombre, new { @class = "form-control", @placeholder = "nombre", @id = "nombre"  })*@
+                @Html.ValidationMessageFor(model => model.nombre)
+            </div>
+
+
+         <div class="span6">
+        <div class="editor-label">
+                @Html.LabelFor(model => model.dni)
+            </div>
+            <div class="editor-field">
+                <input name="dni" type="text" required="required" placeholder="Nombre" class="form-control" />
+                @*@Html.EditorFor(model => model.nombre, new { @class = "form-control", @placeholder = "nombre", @id = "nombre"  })*@
+                @Html.ValidationMessageFor(model => model.dni)
+            </div> 
+        </div> 
+         
+        
+        <div class="editor-label">
+                @Html.LabelFor(model => model.apellidos)
+            </div>
+            <div class="editor-field">
+                <input name="apellidos" type="text" required="required" placeholder="Apellidos" class="form-control" />
+                @*@Html.EditorFor(model => model.nombre, new { @class = "form-control", @placeholder = "nombre", @id = "nombre"  })*@
+                @Html.ValidationMessageFor(model => model.apellidos)
+            </div>
+
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+        <button type="submit" class="btn btn-primary" name="cmd"><i class="fa fa-check"></i>&nbsp;Guardar</button>
+    </div>
+}

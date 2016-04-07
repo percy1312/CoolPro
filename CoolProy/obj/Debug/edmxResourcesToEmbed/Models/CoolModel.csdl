@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CoolModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CoolEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Cliente" EntityType="CoolModel.Cliente" />
+    <EntitySet Name="Det_empleado" EntityType="CoolModel.Det_empleado" />
+    <EntitySet Name="Det_Producto" EntityType="CoolModel.Det_Producto" />
+    <EntitySet Name="Empleado" EntityType="CoolModel.Empleado" />
+    <EntitySet Name="estado" EntityType="CoolModel.estado" />
+    <EntitySet Name="Inspeccion" EntityType="CoolModel.Inspeccion" />
+    <EntitySet Name="Marca" EntityType="CoolModel.Marca" />
+    <EntitySet Name="Modelo" EntityType="CoolModel.Modelo" />
+    <EntitySet Name="Producto" EntityType="CoolModel.Producto" />
+    <EntitySet Name="SolicitudInspeccion" EntityType="CoolModel.SolicitudInspeccion" />
+    <EntitySet Name="tb_rol" EntityType="CoolModel.tb_rol" />
+    <EntitySet Name="TipoServicio" EntityType="CoolModel.TipoServicio" />
+    <EntitySet Name="Usuario" EntityType="CoolModel.Usuario" />
+    <AssociationSet Name="FK__Solicitud__idcli__1FCDBCEB" Association="CoolModel.FK__Solicitud__idcli__1FCDBCEB">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="SolicitudInspeccion" EntitySet="SolicitudInspeccion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_detalleempleado_empleado" Association="CoolModel.fk_tb_detalleempleado_empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Det_empleado" EntitySet="Det_empleado" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_detalleempleado_inspeccion" Association="CoolModel.fk_tb_detalleempleado_inspeccion">
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+      <End Role="Det_empleado" EntitySet="Det_empleado" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_detalleproducto_equipo" Association="CoolModel.fk_tb_detalleproducto_equipo">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Det_Producto" EntitySet="Det_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_detalleproducto_inspeccion" Association="CoolModel.fk_tb_detalleproducto_inspeccion">
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+      <End Role="Det_Producto" EntitySet="Det_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inspeccio__idest__22AA2996" Association="CoolModel.FK__Inspeccio__idest__22AA2996">
+      <End Role="estado" EntitySet="estado" />
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inspeccio__idsol__24927208" Association="CoolModel.FK__Inspeccio__idsol__24927208">
+      <End Role="SolicitudInspeccion" EntitySet="SolicitudInspeccion" />
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inspeccio__idtip__239E4DCF" Association="CoolModel.FK__Inspeccio__idtip__239E4DCF">
+      <End Role="TipoServicio" EntitySet="TipoServicio" />
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto__idmarc__1920BF5C" Association="CoolModel.FK__Producto__idmarc__1920BF5C">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto__idmode__182C9B23" Association="CoolModel.FK__Producto__idmode__182C9B23">
+      <End Role="Modelo" EntitySet="Modelo" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_usuario_tb_rol" Association="CoolModel.fk_tb_usuario_tb_rol">
+      <End Role="tb_rol" EntitySet="tb_rol" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <FunctionImport Name="registrarDetalleInspeccion">
+      <Parameter Name="idDetPro" Mode="In" Type="Int32" />
+      <Parameter Name="idProducto" Mode="In" Type="Int32" />
+      <Parameter Name="idinspeccion" Mode="In" Type="Int32" />
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="observacion" Mode="In" Type="String" />
+      <Parameter Name="venta" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="registrarInspeccion">
+      <Parameter Name="observaciones" Mode="In" Type="String" />
+      <Parameter Name="idestado" Mode="In" Type="Int32" />
+      <Parameter Name="idsolicitud" Mode="In" Type="Int32" />
+      <Parameter Name="idtiposervi" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_obtenerUltimaInspeccion" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="usp_obtenerUltimaSolicitud" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="usp_obtenerUltimoCliente" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="usp_obtenerUltimoEquipo" />
+  </EntityContainer>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="idcliente" />
+    </Key>
+    <Property Name="idcliente" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="apellidopat" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="apellidomat" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="direccion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="refedireccion" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="telefonono" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="celular" Type="Int32" />
+    <NavigationProperty Name="SolicitudInspeccion" Relationship="CoolModel.FK__Solicitud__idcli__1FCDBCEB" FromRole="Cliente" ToRole="SolicitudInspeccion" />
+  </EntityType>
+  <EntityType Name="Det_empleado">
+    <Key>
+      <PropertyRef Name="idempleado" />
+      <PropertyRef Name="idinspeccion" />
+    </Key>
+    <Property Name="idempleado" Type="Int32" Nullable="false" />
+    <Property Name="idinspeccion" Type="Int32" Nullable="false" />
+    <Property Name="responsable" Type="Boolean" />
+    <NavigationProperty Name="Empleado" Relationship="CoolModel.fk_tb_detalleempleado_empleado" FromRole="Det_empleado" ToRole="Empleado" />
+    <NavigationProperty Name="Inspeccion" Relationship="CoolModel.fk_tb_detalleempleado_inspeccion" FromRole="Det_empleado" ToRole="Inspeccion" />
+  </EntityType>
+  <EntityType Name="Det_Producto">
+    <Key>
+      <PropertyRef Name="iddetallepro" />
+      <PropertyRef Name="idproducto" />
+      <PropertyRef Name="idinspeccion" />
+    </Key>
+    <Property Name="iddetallepro" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idproducto" Type="Int32" Nullable="false" />
+    <Property Name="idinspeccion" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="observacion" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="venta" Type="Boolean" />
+    <NavigationProperty Name="Producto" Relationship="CoolModel.fk_tb_detalleproducto_equipo" FromRole="Det_Producto" ToRole="Producto" />
+    <NavigationProperty Name="Inspeccion" Relationship="CoolModel.fk_tb_detalleproducto_inspeccion" FromRole="Det_Producto" ToRole="Inspeccion" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="idempleado" />
+    </Key>
+    <Property Name="idempleado" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="dni" Type="Int32" />
+    <Property Name="nombre" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="apellidos" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Det_empleado" Relationship="CoolModel.fk_tb_detalleempleado_empleado" FromRole="Empleado" ToRole="Det_empleado" />
+  </EntityType>
+  <EntityType Name="estado">
+    <Key>
+      <PropertyRef Name="idestado" />
+    </Key>
+    <Property Name="idestado" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Inspeccion" Relationship="CoolModel.FK__Inspeccio__idest__22AA2996" FromRole="estado" ToRole="Inspeccion" />
+  </EntityType>
+  <EntityType Name="Inspeccion">
+    <Key>
+      <PropertyRef Name="idinspeccion" />
+    </Key>
+    <Property Name="idinspeccion" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="observaciones" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="diadeinspeccion" Type="DateTime" Precision="0" />
+    <Property Name="horainspeccion" Type="Time" Precision="7" />
+    <Property Name="idestado" Type="Int32" />
+    <Property Name="idtiposervi" Type="Int32" />
+    <Property Name="idsolicitud" Type="Int32" />
+    <NavigationProperty Name="Det_empleado" Relationship="CoolModel.fk_tb_detalleempleado_inspeccion" FromRole="Inspeccion" ToRole="Det_empleado" />
+    <NavigationProperty Name="Det_Producto" Relationship="CoolModel.fk_tb_detalleproducto_inspeccion" FromRole="Inspeccion" ToRole="Det_Producto" />
+    <NavigationProperty Name="estado" Relationship="CoolModel.FK__Inspeccio__idest__22AA2996" FromRole="Inspeccion" ToRole="estado" />
+    <NavigationProperty Name="SolicitudInspeccion" Relationship="CoolModel.FK__Inspeccio__idsol__24927208" FromRole="Inspeccion" ToRole="SolicitudInspeccion" />
+    <NavigationProperty Name="TipoServicio" Relationship="CoolModel.FK__Inspeccio__idtip__239E4DCF" FromRole="Inspeccion" ToRole="TipoServicio" />
+  </EntityType>
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="idmarca" />
+    </Key>
+    <Property Name="idmarca" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Producto" Relationship="CoolModel.FK__Producto__idmarc__1920BF5C" FromRole="Marca" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Modelo">
+    <Key>
+      <PropertyRef Name="idmodelo" />
+    </Key>
+    <Property Name="idmodelo" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Producto" Relationship="CoolModel.FK__Producto__idmode__182C9B23" FromRole="Modelo" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="idproducto" />
+    </Key>
+    <Property Name="idproducto" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="idmodelo" Type="Int32" />
+    <Property Name="idmarca" Type="Int32" />
+    <NavigationProperty Name="Det_Producto" Relationship="CoolModel.fk_tb_detalleproducto_equipo" FromRole="Producto" ToRole="Det_Producto" />
+    <NavigationProperty Name="Marca" Relationship="CoolModel.FK__Producto__idmarc__1920BF5C" FromRole="Producto" ToRole="Marca" />
+    <NavigationProperty Name="Modelo" Relationship="CoolModel.FK__Producto__idmode__182C9B23" FromRole="Producto" ToRole="Modelo" />
+  </EntityType>
+  <EntityType Name="SolicitudInspeccion">
+    <Key>
+      <PropertyRef Name="idsolicitud" />
+    </Key>
+    <Property Name="idsolicitud" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="referencias" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="estado" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="idcliente" Type="Int32" />
+    <NavigationProperty Name="Cliente" Relationship="CoolModel.FK__Solicitud__idcli__1FCDBCEB" FromRole="SolicitudInspeccion" ToRole="Cliente" />
+    <NavigationProperty Name="Inspeccion" Relationship="CoolModel.FK__Inspeccio__idsol__24927208" FromRole="SolicitudInspeccion" ToRole="Inspeccion" />
+  </EntityType>
+  <EntityType Name="tb_rol">
+    <Key>
+      <PropertyRef Name="idRol" />
+    </Key>
+    <Property Name="idRol" Type="Int32" Nullable="false" />
+    <Property Name="descRol" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
+    <Property Name="estadoRol" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="CoolModel.fk_tb_usuario_tb_rol" FromRole="tb_rol" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="TipoServicio">
+    <Key>
+      <PropertyRef Name="idtiposervi" />
+    </Key>
+    <Property Name="idtiposervi" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Inspeccion" Relationship="CoolModel.FK__Inspeccio__idtip__239E4DCF" FromRole="TipoServicio" ToRole="Inspeccion" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="usuario1" />
+    </Key>
+    <Property Name="usuario1" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="clave" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="idRol" Type="Int32" Nullable="false" />
+    <Property Name="verificadoUsuario" Type="Boolean" Nullable="false" />
+    <Property Name="estadoUsuario" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tb_rol" Relationship="CoolModel.fk_tb_usuario_tb_rol" FromRole="Usuario" ToRole="tb_rol" />
+  </EntityType>
+  <Association Name="FK__Solicitud__idcli__1FCDBCEB">
+    <End Role="Cliente" Type="CoolModel.Cliente" Multiplicity="0..1" />
+    <End Role="SolicitudInspeccion" Type="CoolModel.SolicitudInspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idcliente" />
+      </Principal>
+      <Dependent Role="SolicitudInspeccion">
+        <PropertyRef Name="idcliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_detalleempleado_empleado">
+    <End Role="Empleado" Type="CoolModel.Empleado" Multiplicity="1" />
+    <End Role="Det_empleado" Type="CoolModel.Det_empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="idempleado" />
+      </Principal>
+      <Dependent Role="Det_empleado">
+        <PropertyRef Name="idempleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_detalleempleado_inspeccion">
+    <End Role="Inspeccion" Type="CoolModel.Inspeccion" Multiplicity="1" />
+    <End Role="Det_empleado" Type="CoolModel.Det_empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspeccion">
+        <PropertyRef Name="idinspeccion" />
+      </Principal>
+      <Dependent Role="Det_empleado">
+        <PropertyRef Name="idinspeccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_detalleproducto_equipo">
+    <End Role="Producto" Type="CoolModel.Producto" Multiplicity="1" />
+    <End Role="Det_Producto" Type="CoolModel.Det_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idproducto" />
+      </Principal>
+      <Dependent Role="Det_Producto">
+        <PropertyRef Name="idproducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_detalleproducto_inspeccion">
+    <End Role="Inspeccion" Type="CoolModel.Inspeccion" Multiplicity="1" />
+    <End Role="Det_Producto" Type="CoolModel.Det_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspeccion">
+        <PropertyRef Name="idinspeccion" />
+      </Principal>
+      <Dependent Role="Det_Producto">
+        <PropertyRef Name="idinspeccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inspeccio__idest__22AA2996">
+    <End Role="estado" Type="CoolModel.estado" Multiplicity="0..1" />
+    <End Role="Inspeccion" Type="CoolModel.Inspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estado">
+        <PropertyRef Name="idestado" />
+      </Principal>
+      <Dependent Role="Inspeccion">
+        <PropertyRef Name="idestado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inspeccio__idsol__24927208">
+    <End Role="SolicitudInspeccion" Type="CoolModel.SolicitudInspeccion" Multiplicity="0..1" />
+    <End Role="Inspeccion" Type="CoolModel.Inspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudInspeccion">
+        <PropertyRef Name="idsolicitud" />
+      </Principal>
+      <Dependent Role="Inspeccion">
+        <PropertyRef Name="idsolicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inspeccio__idtip__239E4DCF">
+    <End Role="TipoServicio" Type="CoolModel.TipoServicio" Multiplicity="0..1" />
+    <End Role="Inspeccion" Type="CoolModel.Inspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoServicio">
+        <PropertyRef Name="idtiposervi" />
+      </Principal>
+      <Dependent Role="Inspeccion">
+        <PropertyRef Name="idtiposervi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto__idmarc__1920BF5C">
+    <End Role="Marca" Type="CoolModel.Marca" Multiplicity="0..1" />
+    <End Role="Producto" Type="CoolModel.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="idmarca" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idmarca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto__idmode__182C9B23">
+    <End Role="Modelo" Type="CoolModel.Modelo" Multiplicity="0..1" />
+    <End Role="Producto" Type="CoolModel.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelo">
+        <PropertyRef Name="idmodelo" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idmodelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_usuario_tb_rol">
+    <End Role="tb_rol" Type="CoolModel.tb_rol" Multiplicity="1" />
+    <End Role="Usuario" Type="CoolModel.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_rol">
+        <PropertyRef Name="idRol" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

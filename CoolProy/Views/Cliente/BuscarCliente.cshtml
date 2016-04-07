@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CoolProy.Models.Cliente>
+
+@{
+    ViewBag.Title = "BuscarCliente";
+    ////Layout = "~/Views/Plantillas/plantilla.cshtml";
+    //CoolProy.Models.Cliente cliente = new CoolProy.Models.Cliente();
+    //List<CoolProy.Models.Cliente> clientes = ViewBag.clientes;
+}
+
+<h2>BuscarCliente</h2>
+@using(Html.BeginForm())
+{
+
+<p>
+ Búsqueda por nombre: @Html.TextBox("CadenaBusqueda")
+ <input type="submit" value="Buscar" />
+</p>
+
+} 
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idcliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellidopat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellidomat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.refedireccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefonono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.celular)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idcliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidopat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidomat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.refedireccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefonono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.celular)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

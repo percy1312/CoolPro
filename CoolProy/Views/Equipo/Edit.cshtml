@@ -1,0 +1,54 @@
+﻿@model CoolProy.Models.Modelo
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Equipo</legend>
+
+       <div class="editor-label">
+            @Html.LabelFor(model => model.equipo.idequipo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.equipo.idequipo)
+            @Html.ValidationMessageFor(model => model.equipo.idequipo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.equipo.descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.equipo.descripcion)
+            @Html.ValidationMessageFor(model => model.equipo.descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.equipo.idmarca, "Marca")
+        </div>
+        <div class="editor-field">
+             @*@Html.EditorFor(model => model.equipo.idmarca)*@
+              @Html.DropDownListFor(model => model.equipo.idmarca, (SelectList)ViewBag.idmarca)
+            @Html.DropDownList("idmarca", (SelectList)ViewBag.marca)
+            @Html.ValidationMessageFor(model => model.equipo.idmarca)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

@@ -1,0 +1,57 @@
+﻿@model CoolProy.Models.SolicitudInspeccion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>SolicitudInspeccion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idsolicitud)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idsolicitud)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.referencias)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.referencias)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.estado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estado)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cliente.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cliente.nombre)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

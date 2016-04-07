@@ -1,0 +1,71 @@
+﻿@model CoolProy.Models.Encap
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+ 
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.idsolicitud)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.idsolicitud)
+            @Html.ValidationMessageFor(model => model.solicitudinspeccion.idsolicitud)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.fecha)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.fecha)
+            @Html.ValidationMessageFor(model => model.solicitudinspeccion.fecha)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.referencias)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.referencias)
+            @Html.ValidationMessageFor(model => model.solicitudinspeccion.referencias)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.descripcion)
+            @Html.ValidationMessageFor(model => model.solicitudinspeccion.descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.estado)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.estado)
+            @Html.ValidationMessageFor(model => model.solicitudinspeccion.estado)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.idcliente, "Cliente")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.solicitudinspeccion.idcliente,(SelectList)ViewBag.idcliente)
+            @Html.ValidationMessageFor(model => model.solicitudinspeccion.idcliente)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p> 
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

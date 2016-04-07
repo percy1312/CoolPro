@@ -1,0 +1,84 @@
+﻿ @model CoolProy.Models.Cliente
+@using (Ajax.BeginForm("Edit", "Cliente2", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
+{
+    @Html.HiddenFor(m => m.idcliente)
+    <div class="modal-body">
+
+         <div class="span6">
+         <div class="editor-label">
+            @Html.LabelFor(model => model.idcliente)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.idcliente, new {@readonly="readonly" })
+            @Html.ValidationMessageFor(model => model.idcliente)
+        </div> 
+            </div> 
+         
+         <div class="editor-label">
+            @Html.LabelFor(model => model.nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombre)
+            @Html.ValidationMessageFor(model => model.nombre)
+        </div>  
+
+        <div class="span6">
+          <div class="editor-label">
+            @Html.LabelFor(model => model.apellidopat)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.apellidopat)
+            @Html.ValidationMessageFor(model => model.apellidopat)
+        </div>
+     </div>  
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.apellidomat)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.apellidomat)
+            @Html.ValidationMessageFor(model => model.apellidomat)
+        </div>
+        
+        <div class="span6">
+          <div class="editor-label">
+            @Html.LabelFor(model => model.direccion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.direccion)
+            @Html.ValidationMessageFor(model => model.direccion)
+        </div>
+     </div>  
+
+           <div class="editor-label">
+            @Html.LabelFor(model => model.celular)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.celular)
+            @Html.ValidationMessageFor(model => model.celular)
+        </div>
+        
+         <div class="span6">
+          <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+     </div>  
+
+          <div class="editor-label">
+            @Html.LabelFor(model => model.telefonono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.telefonono)
+            @Html.ValidationMessageFor(model => model.telefonono)
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+        <button type="submit" class="btn btn-primary" name="cmd"><i class="fa fa-check"></i>&nbsp;Guardar</button>
+    </div>
+}

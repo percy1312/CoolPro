@@ -1,0 +1,57 @@
+﻿@model CoolProy.Models.Encap
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Producto</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.producto.idproducto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.producto.idproducto)
+            @Html.ValidationMessageFor(model => model.producto.idproducto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.producto.descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.producto.descripcion)
+            @Html.ValidationMessageFor(model => model.producto.descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.producto.idmodelo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.producto.idmodelo)
+            @Html.ValidationMessageFor(model => model.producto.idmodelo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.producto.idmarca)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.producto.idmarca)
+            @Html.ValidationMessageFor(model => model.producto.idmarca)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+ 

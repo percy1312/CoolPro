@@ -1,0 +1,97 @@
+﻿@model CoolProy.Models.Encap
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Cliente</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cliente.idcliente)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cliente.idcliente)
+            @Html.ValidationMessageFor(model => model.cliente.idcliente)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cliente.nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cliente.nombre)
+            @Html.ValidationMessageFor(model => model.cliente.nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cliente.apellidopat)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cliente.apellidopat)
+            @Html.ValidationMessageFor(model => model.cliente.apellidopat)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cliente.apellidomat)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cliente.apellidomat)
+            @Html.ValidationMessageFor(model => model.cliente.apellidomat)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cliente.direccion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cliente.direccion)
+            @Html.ValidationMessageFor(model => model.cliente.direccion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cliente.refedireccion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cliente.refedireccion)
+            @Html.ValidationMessageFor(model => model.cliente.refedireccion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cliente.telefonono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cliente.telefonono)
+            @Html.ValidationMessageFor(model => model.cliente.telefonono)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cliente.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cliente.email)
+            @Html.ValidationMessageFor(model => model.cliente.email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cliente.celular)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cliente.celular)
+            @Html.ValidationMessageFor(model => model.cliente.celular)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+ 

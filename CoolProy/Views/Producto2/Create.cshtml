@@ -1,0 +1,54 @@
+﻿@model CoolProy.Models.Producto
+@using (Ajax.BeginForm("Create", "Producto2", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
+{
+    
+    <div class="modal-body">
+
+
+             <div class="span6">
+        <div class="editor-label">
+            @Html.Label("Codigo")
+        </div>
+        <div class="editor-field" >
+           <input type="text" placeholder="Nro" readonly="true"/> 
+        </div>
+        </div>
+
+        <div class="editor-label">
+                @Html.LabelFor(model => model.descripcion)
+            </div>
+            <div class="editor-field">
+                @*<input name="descripcion" type="text" required="required" placeholder="Nombre" class="form-control" />*@
+                @Html.EditorFor(model => model.descripcion, new { @class = "form-control", @placeholder = "nombre", @id = "nombre"  })
+                @Html.ValidationMessageFor(model => model.descripcion)
+            </div>
+
+
+         <div class="span6">
+        <div class="editor-label">
+                @Html.LabelFor(model => model.Marca.idmarca)
+            </div>
+            <div class="editor-field">
+                @*@Html.DropDownList("idmarca",String.Empty)*@
+                @Html.DropDownListFor(model => model.idmarca,(SelectList)ViewBag.idmarca) 
+                @Html.ValidationMessageFor(model => model.Marca)
+            </div> 
+        </div> 
+         
+        
+        <div class="editor-label">
+                @Html.LabelFor(model => model.idmodelo)
+            </div>
+            <div class="editor-field">
+                    
+                @Html.DropDownListFor(model => model.idmodelo,(SelectList)ViewBag.idmodelo) 
+                @Html.ValidationMessageFor(model => model.Modelo)
+            </div>
+
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close</button>
+        <button type="submit" class="btn btn-primary" name="cmd"><i class="fa fa-check"></i>&nbsp;Save</button>
+    </div>
+}

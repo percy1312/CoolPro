@@ -1,0 +1,55 @@
+﻿@*@model IEnumerable<CoolProy.Models.Empleado>*@
+
+@{
+    
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+    CoolProy.Models.Empleado empleado = new CoolProy.Models.Empleado();
+    List<CoolProy.Models.Empleado> empleados = ViewBag.empleados;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => empleado.idempleado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => empleado.dni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => empleado.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => empleado.apellidos)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in empleados) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idempleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidos)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.idempleado  }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idempleado  }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idempleado  })
+        </td>
+    </tr>
+}
+
+</table>

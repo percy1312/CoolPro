@@ -1,0 +1,144 @@
+﻿@model CoolProy.Models.Encap
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+    //CoolProy.Models.Producto producto = new CoolProy.Models.Producto();
+    //List<CoolProy.Models.Producto> productos = ViewBag.productos;
+}
+
+ <div class="span9">
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a> <span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Producto")">Solicitud</a>
+        </li>
+    </ul>
+      <br />
+    <div class="row">
+			<div class="span2">
+           <a href="@Url.Action("Create","Producto")" class="btn btn-primary pull-right">Agregar Equipo</a>
+			</div>		  
+			 
+          </div>
+     <br />
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mproducto.idproducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mproducto.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mproducto.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mproducto.Marca)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.listpro)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idproducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marca.descripcion)
+        </td>
+         <td> 
+             @* <button  type="button" class="btn btn-primary btn-small" data-toggle="modal" data-target="#myModal">
+                     Buscar
+                    </button>*@
+             <a href="@Url.Action("Edit","Producto",new { id=item.idproducto })" class="btn btn-primary pull-right">Editar</a>  </td>
+        <td>     <a href="@Url.Action("Details","Producto",new { id=item.idproducto })" class="btn btn-primary pull-right">Detalle</a>  </td>
+          <td>    <a href="@Url.Action("Delete","Producto",new { id=item.idproducto })" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Eliminar</a>
+           
+        </td>
+    </tr>
+}
+
+</table>
+     	 
+
+       <div class="span6" >
+         <div>
+              
+             <!-- Modal -->
+             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                 <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                         <div class="modal-header">
+                             <button type="button" class="close"  data-dismiss="modal"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title" id="myModalLabel">Clientes Registrado</h4>
+                         </div>
+                         <div class="modal-body">
+ 
+                            
+
+                          
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Producto</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.mproducto.idproducto)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mproducto.idproducto)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.mproducto.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mproducto.descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.mproducto.idmodelo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mproducto.idmodelo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.mproducto.idmarca)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mproducto.idmarca)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+        @*@Html.ActionLink("Back to List", "Index")*@
+    </p>
+}
+
+
+
+                         </div>
+                  
+                     </div>
+                 </div>
+             </div> <!--end modal-->
+
+           
+        </div>
+
+              </div> 
+
+
+          </div>

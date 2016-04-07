@@ -1,0 +1,287 @@
+﻿@model CoolProy.Models.Encap
+@{
+    ViewBag.Title = "Tecnicos";
+    Layout = "~/Views/Plantillas/plantilla.cshtml"; 
+    
+}
+<style type="text/css"> .miEstilo{background-color: yellow; font-size:3em;} input{margin:10px;}
+</style>
+  
+   
+<h2>Tecnicos</h2>
+
+<br />
+<br />
+
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listemple)
+        {
+            <tr>
+                <td>@item.idempleado</td>
+                <td>@item.dni</td> 
+                <td>@item.nombre</td> 
+                <td>@item.apellidos</td> 
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<br />
+@*<input id="btnCarga" type="button" value="Cargar Tabla.." onclick="carga();" />
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+        </tr>
+    </thead>
+    <tbody id="tblQuery"></tbody>
+</table>*@
+
+@*    <input id="btnCarga" type="button" value="Cargar Tabla.." onclick="carga();" />
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Producto</th>
+            <th>Marca</th>
+            <th>MOdelo</th>
+        </tr>
+    </thead>
+    <tbody id="tblQuery"></tbody>
+</table>*@
+
+        <input id="btnCarga" type="button" value="Cargar Tabla.." onclick="carga();" />
+<table border="1" >
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descripcion</th> 
+        </tr>
+    </thead>
+    <tbody id="tblQuery">
+
+        <tr></tr>
+    </tbody>
+</table>
+
+
+
+<br />
+
+<table>
+    <tr>
+        <td>DNI:</td>
+        <td><input id="txtDni" type="text" /></td>
+    </tr>
+    <tr>
+        <td>Nombre:</td>
+        <td><input id="txtNombre" type="text" /></td>
+    </tr>
+    <tr>
+        <td>Apellido:</td>
+        <td><input id="txtApellido" type="text" /></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <button onclick="guarda();">Guardar</button>
+        </td>
+    </tr>
+</table>
+     
+
+<br />
+<h2>Cursos aprenderaprogramar.com</h2><h3>Ejemplos JavaScript</h3>
+<input type="button" id="d" value="Activar/Desactivar Css" onclick="desactivar()"/>
+<br/>
+<div class="miEstilo">Esto es un Ejemplo</div>
+
+ @*    <table id="fastCartTable" class="table table-bordered table-striped ">
+               <tr>
+                   <th> Product Number </th>
+                   <th> Quantity </th>
+               </tr>
+          <tbody id="tbldetalle"  >
+              <tr></tr>
+              </tbody>
+           </table>
+     <button onclick="addLine();"></button>
+ *@
+
+<script >
+    function desactivar() {
+        document.getElementById('d').disabled = true;
+    }
+</script>
+<script >
+    function cambiarCSS() {
+        var nodoStyle = document.getElementsByTagName('style');
+        nodoStyle[0].disabled = !nodoStyle[0].disabled;
+    }
+</script>
+
+<script> 
+    function carga() {
+        $.ajax({
+            url: '@Url.Action("GetModelos", "Empleado")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $("#tblQuery").empty();
+
+                for (var i = 0; i < data.length; i++) {
+                    $("#tblQuery").append("<tr>");
+
+                    $("#tblQuery").append("<td>" + data[i].idmodelo + "</td>");
+                    $("#tblQuery").append("</tr>");
+                }
+            },
+            error: function () { }
+        });
+    }
+</script>
+
+
+<script> 
+
+    function guarda() {
+        var jsonData = {
+            dni: $("#txtDni").val(),
+            nombre: $("#txtNombre").val(),
+            apellidos: $("#txtApellido").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddTecnico", "Empleado")',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(jsonData),
+            dataType: "json",
+            success: function (result) {
+                $("#txtDni").val('');
+                $("#txtNombre").val('');
+                $("#txtApellido").val('');
+
+                alert(result);
+            },
+            error: function () { }
+        });
+    }
+</script>
+
+<script>
+    function addLine() {
+
+        var tbl = document.getElementById('tbldetalle');
+        var lastRow = tbl.rows.length;
+        var row = tbl.insertRow(0);
+        var row2 = tbl.insertRow(1);
+        var row3 = tbl.insertRow(2);
+        var row4 = tbl.insertRow(3);
+
+        //var productNoCell = row.insertCell(0);
+        //var qtyCell = row.insertCell(1);
+
+        row.innerHTML = "CO001";
+        row2.innerHTML = "4";
+        row3.innerHTML = "<input type='text' />";
+        row4.innerHTML = "<input  style='text-align:center;' type='checkbox'/></td>";
+
+        return false;
+    }
+</script>
+    <script>
+        function deleteRow(rowIndex) {
+            var table = document.getElementById('fastCartTable')
+            table.deleteRow(rowIndex);
+        }
+    </script>
+<script> 
+
+         function addRow(tableID) {
+
+             var table = document.getElementById(tableID);
+
+ 
+
+             var rowCount = table.rows.length;
+
+             var row = table.insertRow(rowCount);
+
+ 
+
+             var cell1 = row.insertCell(0);
+
+             var element1 = document.createElement("input");
+
+             element1.type = "checkbox";
+
+             cell1.appendChild(element1);
+
+ 
+
+             var cell2 = row.insertCell(1);
+
+             var element2 = document.createElement("input");
+
+             element2.type = "text";
+
+             cell2.appendChild(element2);
+
+         }
+
+ 
+
+    function deleteRow(tableID) {
+
+        try {
+
+            var table = document.getElementById(tableID);
+
+            var rowCount = table.rows.length;
+
+ 
+
+            for(var i=0; i<rowCount; i++) {
+
+                var row = table.rows[i];
+
+                var chkbox = row.cells[0].childNodes[0];
+
+                if(null != chkbox && true == chkbox.checked) {
+
+                    table.deleteRow(i);
+
+                    rowCount--;
+
+                    i--;
+
+                }
+
+            }
+
+        }catch(e) {
+
+            alert(e);
+
+        }
+
+    }
+
+ 
+     
+</script>
+ 

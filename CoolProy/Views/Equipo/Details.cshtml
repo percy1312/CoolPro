@@ -1,0 +1,37 @@
+﻿@model CoolProy.Models.Equipo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Equipo</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idequipo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idequipo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Marca.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Marca.descripcion)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

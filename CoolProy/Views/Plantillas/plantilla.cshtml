@@ -1,0 +1,405 @@
+﻿@*@model CoolProy.Models.Encap*@
+@using CoolProy.Models;
+@{
+    //Boolean ocultarMenu = (Boolean)ViewBag.ocultarMenu; 
+    //Boolean ocultarMenu = false;
+    //string estiloOcultarMenu = "";
+    //string estiloCentrarContenido = "";
+
+    string mensaje = (string)Session["mensaje"];
+    string mensaje2 = (string)Session["mensaje2"];
+    Session["mensaje"] = null;
+    Session["mensaje2"] = null;
+    //if (ocultarMenu)
+    //{
+    //    estiloOcultarMenu = "display:none;";
+    //    if ((String)ViewBag.Title == "bb")
+    //    {
+    //        estiloCentrarContenido = "margin-left: 100px;";
+    //    }
+    //}
+    Encap m = new Encap();
+    //IEnumerable<Equipo> equipos = m.Equipo.ToList();
+    Usuario usuario = (Usuario)Session["usuario"];
+    List<Empleado1> carro = new List<Empleado1>();
+
+        //IEnumerable<Equipo> 
+} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    @Styles.Render("~/Content/css/bootstrap/bootstrap.css")
+    @Styles.Render("~/Content/css/main.css")
+    @Styles.Render("~/Content/css/jquery.rating.css")
+
+    @*@Scripts.Render("~/bundles/jquery")*@ 
+     @Scripts.Render("~/bundles/jqueryval")
+     <script src="~/Scripts/jquery-2.2.1.js"></script> 
+    <link   rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> 
+    <link   href="css/jquery.rating.css" rel="stylesheet">  
+    <link   rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="~/Content/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/js/bootstrap-timepicker.js"></script>
+   
+    <script src="~/Scripts/modernizr-2.5.3.js"></script> 
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+  
+  
+   
+   
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+    <body> 
+
+         
+      
+        <div class="container"> 
+            <div class="row "><!-- start header -->
+                
+                <div class="span8">
+			
+				<div class="row">
+					<div class="span3">
+                        <div style="float:right;">
+                            @if (usuario != null)
+                            {
+                                if (usuario.idRol == 1)
+                                {
+                                    <h4>Usuario:  Administrador</h4>
+						         }
+                                if (usuario.idRol == 2) 
+                                {
+                                    <h4>Usuario:  Empleado </h4>
+                                     <img width="220" height="0"/>
+                                }
+                                if (usuario.idRol == 3) 
+                                {
+                                    <h4>Usuario:  Secretaria </h4>
+                                     <img width="220" height="0"/>
+                                }
+                            }
+                            else
+                            {
+                                <img width="220" height="0"/>
+                            }
+                        </div>
+					</div>					
+					<div class="span4 customer_service">
+                        <div style="float:right;">
+						    <h4>El mejor servicio de aire acondicionado</h4>
+						    <h4><small>Servicio al cliente: 01 1234567</small></h4>
+                        </div>
+					</div>
+				</div>
+				<br />
+			</div>
+           
+			 @* <img src="@Url.Content("~/Images/banner.jpg")" alt="" style="/*width:1200px;height:250px;*/"> *@
+				 
+           
+		</div><!-- end header -->
+        <div class="row" ><!-- start nav -->
+			<div class="span12">
+			  <div class="navbar" >
+					<div class="navbar-inner"  style="width: auto;">
+					  <div class="container" style="width: auto;">
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						  <span class="icon-bar"></span>
+
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						</a>
+						<div class="nav-collapse">
+						  <ul class="nav">
+							<li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+
+                          
+					 
+							   <li>@Html.ActionLink("Quienes somos", "", "", null, new { })</li>
+                             <li>@Html.ActionLink("Contactanos", "", "", null, new { })</li>
+                              <li>@Html.ActionLink("Servicios", "Validar", "Usuario", null, new { })</li>
+                                      @*<li>@Html.ActionLink("Equipos", "Index", "Equipo", null, new { })</li>*@
+                            
+						  </ul>
+                           
+						  <ul class="nav pull-right">
+						   <li class="divider-vertical"></li>
+							<form class="navbar-search" action="">  
+                                 
+                                     @if (usuario != null)
+                                     {
+                                       <span style="color:white;">@usuario.usuario1</span>
+                                                 <button id="btnMenuUsuario" class="btn btn-primary btn-small search_btn" type="button" >cuenta</button>                                                                           
+                                     }
+                                     else
+                                     {
+                                               <a href="@Url.Action("Validar", "Usuario")" class="btn btn-primary btn-small search_btn">Ingresar</a>
+                                
+                                     }
+                                
+							</form>
+                               
+                           
+                            
+						  </ul>
+						</div><!-- /.nav-collapse -->
+					  </div>
+					</div><!-- /navbar-inner -->
+              
+
+                   <div id="divMenuUsuario" style="background-image: -webkit-linear-gradient(top, #ce4213, #dd4814);padding:0px !important;display:none;margin-left: 790px;width:150px;z-index: 1;position:absolute;">
+                        @using (Html.BeginForm("logouUsuario", "Usuario", FormMethod.Post, new { style = "margin:0px;" }))
+                        {
+                           <button type="submit" class="btn btn-primary btn-small search_btn" style="margin:0px;width:100%;">Salir</button>
+                        }
+                   </div>
+               
+                  
+				</div><!-- /navbar -->
+			</div>
+		</div><!-- end nav -->	
+
+             <div class="row" >
+		<div class="span3" >
+			<!-- start sidebar -->
+<ul class="breadcrumb">
+    <li>Menú</span></li>
+</ul>
+       
+            	<div class="nav-collapse">
+<div class="span3 product_list">
+	<ul class="nav">
+           @if ((usuario != null && usuario.idRol == 1))
+           {
+							<li class="dropdown">
+							  <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Mantenimiento <b class="caret"></b></a>
+							  <ul class="dropdown-menu">
+								<li>@Html.ActionLink("Productos", "Index", "Producto2")</li>
+								<li>@Html.ActionLink("Clientes", "Index", "Cliente2")</li>
+								<li>@Html.ActionLink("Empleados", "Index", "Empleado2")</li>
+
+							  </ul>
+							</li>
+               
+                          <li class="dropdown">
+							  <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Inspeccion<b class="caret"></b></a>
+							  <ul class="dropdown-menu">
+								<li>@Html.ActionLink("Solicitar Inspeccion", "Index", "SolicitudInsp")</li>
+								<li>@Html.ActionLink("Realizar Inspeccion", "Index", "Inspeccion")</li>
+
+
+							  </ul>
+							</li> 
+               
+                             <li class="dropdown">
+							  <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Ventas<b class="caret"></b></a>
+							  <ul class="dropdown-menu">
+								<li>@Html.ActionLink("Artefactos de ventilacion", "Index", "SolicitudInsp")</li>
+								<li>@Html.ActionLink("Artefactos de refrigeracion", "Index", "Inspeccion")</li>
+
+
+							  </ul>
+							</li>
+           } @if ((usuario != null && usuario.idRol == 2))
+             { <li class="dropdown">
+							  <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Inspeccion<b class="caret"></b></a>
+							  <ul class="dropdown-menu">
+								<li>@Html.ActionLink("Inspecciones Pendientes", "IndexInspeccion2", "Inspeccion")</li> 
+                                   
+							  </ul>
+							</li>}
+            
+            @if ((usuario != null && usuario.idRol == 3))
+            { <li class="dropdown">
+							  <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Inspecciones<b class="caret"></b></a>
+							  <ul class="dropdown-menu">
+								<li>@Html.ActionLink("Solicitar Inspeccion", "Index", "SolicitudInsp")</li>
+
+
+							  </ul>
+							</li>}
+		@*<li class="dropdown">
+							  <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Mantenimiento<b class="caret"></b></a>
+							  <ul class="dropdown-menu">
+								<li>@Html.ActionLink("Equipos", "Index", "Equipo")</li>
+								<li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
+								<li>@Html.ActionLink("Empleado", "Juguetes", "Productos")</li>
+
+							  </ul>
+							</li>*@
+                              
+                       @* <li class="dropdown">
+							  <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Ventas<b class="caret"></b></a>
+							  <ul class="dropdown-menu">
+								<li>@Html.ActionLink("Solicitar Inspeccion", "Index", "SolicitudInsp")</li>
+								<li>@Html.ActionLink("Realizar Inspeccion", "Index", "Inspeccion")</li>
+
+
+							  </ul>
+							</li> 
+        <li class="dropdown">
+							  <a href="category.html" class="dropdown-toggle" data-toggle="dropdown">Vensfs<b class="caret"></b></a>
+							  <ul class="dropdown-menu">
+								<li>@Html.ActionLink("Solicitar Inspeccion", "Index", "SolicitudInsp")</li>
+								<li>@Html.ActionLink("Realizar Inspeccion", "Index", "Inspeccion")</li>
+
+
+							  </ul>
+							</li> *@
+	</ul>
+</div><!-- end sidebar -->	
+                    </div>
+            	</div>
+           @* </div>
+             </div> *@
+
+        @Scripts.Render("~/Content/js/jquery.min.js")
+        @Scripts.Render("~/Content/js/bootstrap.js")
+        @Scripts.Render("~/Content/js/jquery.rating.pack.js")
+        @*@Scripts.Render("~/bundles/jquery")*@
+	       @RenderBody()
+      </div><footer>
+	<hr />
+	<div class="row well no_margin_left">
+
+	<div class="span3">
+		<h4>Información</h4>
+		<ul>
+			<li><a href="#">Nosotros</a></li>
+			<li><a href="#">Información de Delivery</a></li>
+			<li><a href="#">Política</a></li>
+			<li><a href="#">Términos &amp; Condiciones</a></li>
+		</ul>
+	</div>
+	<div class="span3">
+		<h4>Servicio al Cliente</h4>
+		<ul>
+			<li><a href="#">Contáctenos</a></li>
+			<li><a href="#">Devoluciones</a></li>
+			<li><a href="#">Mapa del Sitio</a></li>
+		</ul>
+	</div>
+	<div class="span3">
+		<h4>Extras</h4>
+		<ul>
+			<li><a href="#">Vouchers de Regalo</a></li>
+			<li><a href="#">Afiliados</a></li>
+			<li><a href="#">Especiales</a></li>
+		</ul>
+	</div>
+          <button id="btnRegistrarme" type="button" class="btn btn-primary btn-small" style="float:right;">Registrarme</button>
+                         
+	<div class="span2">
+		<h4>Mi Cuenta</h4>
+		<ul>
+			<li><a href="#">Mi Cuenta</a></li>
+		</ul>
+	</div>
+
+</footer>
+     
+    </div> <!-- /container -->
+
+<div class="modal fade" id="modalRenzo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="width: 450px;left:55%;">
+<div class="modal-dialog">
+        <div class="modal-content" style="padding: 20px;padding-top:10px;padding-bottom:10px;">
+        <div class="modal-header" style="padding-right: 0px;padding-bottom: 15px;">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" >Registrarme</h4>
+            </div>
+         <div class="modal-body">
+                @using (Html.BeginForm("Create", "SolicitudInsp", FormMethod.Post))
+                {
+                    <input type="text" placeholder="Documento" style="width:150px;" required="required" name="dniUsuario"/> <span> *</span>
+                    <input type="text" placeholder="Nombres" style="width:150px;" required="required" name="nombresUsuario"/> <span> *</span>
+                    <input type="text" placeholder="Apellido Paterno" style="width:100px;" required="required" name="apePatUsuario"/> <span> *</span>
+                    <input type="text" placeholder="Apellido Materno" style="width:100px;" required="required" name="apeMatUsuario"/> <span> *</span>
+                    <input type="text" placeholder="Dirección" style="width:350px;" required="required"/> <span> *</span>
+                    <input type="text" placeholder="Teléfono" style="width:100px;" required="required" name="telefonoUsuario"/> <span> *</span>
+                    <input type="text" placeholder="Celular" style="width:100px;" required="required" name="celularUsuario"/> <span> *</span>
+                    <input type="email" placeholder="Correo electrónico" style="width:250px;" required="required" name="correoUsuario"/> <span> *</span>
+                    <input type="password" id="txtContrasena" placeholder="Contraseña" style="width:150px;" required="required" name="claveUsuario"/> <span> *</span>  
+                    <br />
+                    <input type="password" id="txtContrasena2" placeholder="Confirmar Contraseña" style="width:150px;" required="required"/> <span> *</span>
+                    <br />
+                    <span id="lblMensaje" style="color:red;"></span>
+                    <br />
+                    <input type="submit" class="btn btn-primary btn-small" value="Registrarme" style="float:right;"/>
+                    
+                    <br />
+                    <br />
+                    <span >Campo requerido (*)</span>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="width:-moz-fit-content;left:55%;">
+    <div class="modal-content" style="padding: 20px;padding-top:10px;padding-bottom:10px;">
+        <span id="textoMsj"></span>
+         <a style="float:right;cursor:pointer" data-dismiss="modal">Cerrar</a>
+    </div>
+</div>
+          
+
+        <script>
+            $(document).ready(function () {
+                var msj = "@mensaje";
+                var msj2 = "@mensaje2";
+                if (msj != null && msj != ""  ) {
+                    $("#textoMsj").html(msj) ;
+                  $('#modalMensaje').modal({
+                      backdrop: false
+                  });
+                }
+                //if (msj2 != null && msj2 != "") {
+                //    $("#textoMsj").html(msj2) ;
+                //    $('#modalMensaje').modal({
+                //        backdrop: false
+                //    });
+                //}
+              
+
+              validarContraseñas = function () {
+                  if ($("#txtContrasena").val() != $("#txtContrasena2").val()) {
+                      $("#lblMensaje").html("Las contraseñas deben coincidir");
+                      return false;
+                  } else {
+                      $("#lblMensaje").html("");
+                  }
+              };
+
+              $("#btnIngresar").click(function () {
+                  $("#divLogin").slideToggle();
+              });
+
+              $("#btnMenuUsuario").click(function () {
+                  $("#divMenuUsuario").slideToggle();
+              });
+
+              $("#btnRegistrarme").click(function () {
+                  $('#modalRenzo').modal('show');
+              });
+
+
+              
+          });
+       </script>
+   </body>
+    </html>

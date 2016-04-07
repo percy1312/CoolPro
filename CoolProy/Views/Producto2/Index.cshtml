@@ -1,0 +1,54 @@
+﻿ @{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+ 
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script> 
+
+
+<div class="span9">
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a> <span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "SolicitudInsp")">Solicitud</a>
+        </li>
+    </ul> 
+    <div class="clearfix">&nbsp;</div>
+     
+    <div class="container">
+        <a href="@Url.Action("Create", "Producto2")" id="Add" class = "btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;Crear Producto</a>
+         <div class="clearfix">&nbsp;</div>
+        <div id="div-record">
+            @Html.Partial("_Producto")
+        </div>
+    </div>
+ 
+ 
+    <div class="modal fade" id="Add-Model" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="width:700px;left:45%;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Nuevo Producto</h4>
+                </div>
+                <div class="divForAdd">
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="modal fade" id="Edit-Model" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="width:700px;left:45%;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Actualizar Producto</h4>
+                </div>
+                <div class="divForUpdate">
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>

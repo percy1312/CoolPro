@@ -1,0 +1,113 @@
+﻿@model CoolProy.Models.Encap 
+
+@using (Ajax.BeginForm("AnadirProducto", "Inspeccion", new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "div-record3",
+    OnSuccess = "anadirDetalle()" 
+}))
+{ 
+    <div class="span9">
+<div class="span6">
+   <div class="editor-label">
+                @Html.Label("Codigo:")
+            </div>
+     <div class="editor-field">
+                 <input type="text" placeholder="Nro" readonly="true"/> 
+         </div>
+      </div>
+   
+     <div class="editor-label">
+                @Html.Label("Producto:")
+            </div>
+   <div class="editor-field">
+            <input   type="text"  id="producto" readonly="true" class="form-control" /> 
+         </div>
+
+  <div class="span6">
+          <div class="editor-label">
+                @Html.Label("Modelo:")
+            </div>
+   <div class="editor-field">
+                   <input    type="text"  id="modelo" readonly="true" class="form-control" /> 
+         </div>
+     </div>  
+    
+    <div class="editor-label">
+                @Html.Label("Marca:")
+            </div>
+   <div class="editor-field">
+                   <input    type="text"  id="marca" readonly="true" class="form-control"  /> 
+         </div>
+<div class="span6">
+@* <div class="editor-label">
+                @Html.Label("idinspeccion:")
+            </div>*@
+   <div class="editor-field">
+            <input name="idinspeccion"  type="hidden"  id="idinspeccion"  class="form-control" /> 
+         </div>
+     </div>@* 
+    
+     <div class="editor-label">
+                 @Html.Label("idproducto:")
+            </div>*@
+     <div class="editor-field">
+                   <input name="idproducto"  id="idproducto" type="hidden"    class="form-control" /> 
+         </div>   
+    
+      
+  @*  <div class="span6">
+ <div class="editor-label">
+                @Html.Label("Observacion:")
+            </div>
+   <div class="editor-field"> 
+       <textarea name="observacion"></textarea>
+         </div>
+          </div>*@
+     
+      <input name="venta" class="input-mini"  type="hidden"  id="idven"   />  
+                
+   <div class="span6">
+ <div class="editor-label">
+                @Html.Label("Cantidad:")
+            </div>
+   <div class="editor-field">
+                   <input name="cantidad" class="input-mini"  type="text"  id="cantidad"   />  
+         </div> 
+
+      
+      </div> 
+        <div class="editor-label">
+                @Html.Label("Venta:")
+            </div>
+   <div class="editor-field">
+                   <input id="idventa" class="input-mini"  type="checkbox" onclick="prueba();" style="width: 19px; height: 19px;"   />  
+         </div> 
+            <div class="span6">
+ <div class="editor-label">
+                @Html.Label("Observacion:")
+            </div>
+   <div class="editor-field"> 
+       <textarea name="observacion" id="observacion"></textarea>
+         </div>
+          </div>
+             <button type="submit" class="btn "name="cmd"><i class="fa fa-check"></i>&nbsp;+ Añadir Equipo</button> 
+        
+             <br />
+                                            <br />
+    </div>
+} 
+<script>
+    function prueba() {
+        //var aa = document.getElementById("idventa").checked;
+        document.getElementById('idven').value = document.getElementById('idventa').checked;
+        //alert(aa);
+    }
+
+</script>
+<script>
+    function anadirDetalle(data) { 
+        $('#tbdetallepro').html(data);
+    }
+
+</script>

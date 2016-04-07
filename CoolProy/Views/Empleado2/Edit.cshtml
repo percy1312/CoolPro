@@ -1,0 +1,47 @@
+﻿ @model CoolProy.Models.Empleado
+@using (Ajax.BeginForm("Edit", "Empleado2", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
+{
+    @Html.HiddenFor(m => m.idempleado)
+    <div class="modal-body">
+
+         <div class="span6">
+         <div class="editor-label">
+            @Html.LabelFor(model => model.idempleado)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.idempleado, new {@readonly="readonly" })
+            @Html.ValidationMessageFor(model => model.idempleado)
+        </div> 
+            </div> 
+         
+         <div class="editor-label">
+            @Html.LabelFor(model => model.dni)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dni)
+            @Html.ValidationMessageFor(model => model.dni)
+        </div>  
+
+        <div class="span6">
+          <div class="editor-label">
+            @Html.LabelFor(model => model.nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombre)
+            @Html.ValidationMessageFor(model => model.nombre)
+        </div>
+     </div>  
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.apellidos)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.apellidos)
+            @Html.ValidationMessageFor(model => model.apellidos)
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+        <button type="submit" class="btn btn-primary" name="cmd"><i class="fa fa-check"></i>&nbsp;Guardar</button>
+    </div>
+}

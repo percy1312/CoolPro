@@ -1,0 +1,181 @@
+﻿@model CoolProy.Models.Encap
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Plantillas/plantilla.cshtml"; 
+    CoolProy.Models.SolicitudInspeccion solicitud = new CoolProy.Models.SolicitudInspeccion();
+    List<CoolProy.Models.SolicitudInspeccion> solicitudes = ViewBag.solicitudes;
+   
+} 
+ <div class="span9">
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a> <span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "SolicitudInsp")">Solicitud</a>
+        </li>
+    </ul>
+
+      <br />
+    <div class="row">
+			<div class="span2">
+           <a href="@Url.Action("Create","SolicitudInsp")" class="btn btn-primary pull-right">Agregar Solicitud</a>
+			</div>		  
+			 
+          </div>
+     <br />
+<table  class="table table-bordered table-striped" >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => solicitud.idsolicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => solicitud.fecha)
+        </th>
+      @*  <th>
+            @Html.DisplayNameFor(model => solicitud.referencias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => solicitud.descripcion)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => solicitud.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => solicitud.Cliente.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in solicitudes) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => @item.idsolicitud)
+        </td>
+        <td> 
+            @Html.DisplayFor(modelItem => @item.fecha )
+        </td>
+      @*  <td>
+            @Html.DisplayFor(modelItem => @item.referencias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => @item.descripcion)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => @item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => @item.Cliente.nombre)
+        </td>
+        <td>
+             
+             <a href="@Url.Action("Edit","SolicitudInsp",new { id=item.idsolicitud })" class="btn btn-primary pull-right">Editar</a>
+             </td>
+            <td> <a href="@Url.Action("Delete","SolicitudInsp",new { id=item.idsolicitud })" class="btn btn-primary pull-right">Eliminar</a>
+           
+        </td>
+          <td> <a href="@Url.Action("Create","Inspeccion",new { id=item.idsolicitud })"  class="btn btn-primary pull-right">Crear Inspeccion</a>
+           
+        </td>
+    </tr>
+}
+
+</table>
+
+     <div class="span6" >
+         <div>
+              
+             <!-- Modal -->
+             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                 <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                         <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                         </div>
+                         <div class="modal-body">
+
+                             @using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+                           
+ <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.idsolicitud)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.idsolicitud)
+            @Html.ValidationMessageFor(model => model.mdl1.idsolicitud)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.fecha)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.fecha)
+            @Html.ValidationMessageFor(model => model.mdl1.fecha)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.referencias)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.referencias)
+            @Html.ValidationMessageFor(model => model.mdl1.referencias)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.descripcion)
+            @Html.ValidationMessageFor(model => model.mdl1.descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.estado)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.estado)
+            @Html.ValidationMessageFor(model => model.mdl1.estado)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.solicitudinspeccion.idcliente, "Cliente")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.solicitudinspeccion.idcliente) 
+           @* @Html.DropDownList("idcliente", String.Empty)*@
+            @Html.ValidationMessageFor(model => model.mdl1.idcliente)
+        </div>
+
+
+       
+        <p>
+            <input type="submit" value="Save" />
+        </p>  
+                             }
+                         </div>
+                         <div class="modal-footer">
+                             <a href="@Url.Action("Index", "SolicitudInsp")" class="btn btn-primary">Salir</a>
+                           
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+           
+        </div>
+
+              </div> 
+      <div class="pagination">
+    <ul>
+    <li><a href="#">Prev</a></li>
+    <li class="active">
+    <a href="#">1</a>
+    </li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">Next</a></li>
+    </ul>
+    </div>
+      </div>

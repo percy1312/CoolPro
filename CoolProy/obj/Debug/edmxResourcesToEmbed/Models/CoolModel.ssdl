@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CoolModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CoolModelStoreContainer">
+    <EntitySet Name="Cliente" EntityType="CoolModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Det_empleado" EntityType="CoolModel.Store.Det_empleado" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Det_Producto" EntityType="CoolModel.Store.Det_Producto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Empleado" EntityType="CoolModel.Store.Empleado" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="estado" EntityType="CoolModel.Store.estado" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Inspeccion" EntityType="CoolModel.Store.Inspeccion" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Marca" EntityType="CoolModel.Store.Marca" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Modelo" EntityType="CoolModel.Store.Modelo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Producto" EntityType="CoolModel.Store.Producto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SolicitudInspeccion" EntityType="CoolModel.Store.SolicitudInspeccion" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tb_rol" EntityType="CoolModel.Store.tb_rol" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipoServicio" EntityType="CoolModel.Store.TipoServicio" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuario" EntityType="CoolModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Inspeccio__idest__22AA2996" Association="CoolModel.Store.FK__Inspeccio__idest__22AA2996">
+      <End Role="estado" EntitySet="estado" />
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inspeccio__idsol__24927208" Association="CoolModel.Store.FK__Inspeccio__idsol__24927208">
+      <End Role="SolicitudInspeccion" EntitySet="SolicitudInspeccion" />
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inspeccio__idtip__239E4DCF" Association="CoolModel.Store.FK__Inspeccio__idtip__239E4DCF">
+      <End Role="TipoServicio" EntitySet="TipoServicio" />
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto__idmarc__1920BF5C" Association="CoolModel.Store.FK__Producto__idmarc__1920BF5C">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto__idmode__182C9B23" Association="CoolModel.Store.FK__Producto__idmode__182C9B23">
+      <End Role="Modelo" EntitySet="Modelo" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Solicitud__idcli__1FCDBCEB" Association="CoolModel.Store.FK__Solicitud__idcli__1FCDBCEB">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="SolicitudInspeccion" EntitySet="SolicitudInspeccion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_detalleempleado_empleado" Association="CoolModel.Store.fk_tb_detalleempleado_empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Det_empleado" EntitySet="Det_empleado" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_detalleempleado_inspeccion" Association="CoolModel.Store.fk_tb_detalleempleado_inspeccion">
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+      <End Role="Det_empleado" EntitySet="Det_empleado" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_detalleproducto_equipo" Association="CoolModel.Store.fk_tb_detalleproducto_equipo">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Det_Producto" EntitySet="Det_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_detalleproducto_inspeccion" Association="CoolModel.Store.fk_tb_detalleproducto_inspeccion">
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+      <End Role="Det_Producto" EntitySet="Det_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tb_usuario_tb_rol" Association="CoolModel.Store.fk_tb_usuario_tb_rol">
+      <End Role="tb_rol" EntitySet="tb_rol" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="idcliente" />
+    </Key>
+    <Property Name="idcliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="apellidopat" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="apellidomat" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="direccion" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="refedireccion" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="telefonono" Type="int" Nullable="false" />
+    <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="celular" Type="int" />
+  </EntityType>
+  <EntityType Name="Det_empleado">
+    <Key>
+      <PropertyRef Name="idempleado" />
+      <PropertyRef Name="idinspeccion" />
+    </Key>
+    <Property Name="idempleado" Type="int" Nullable="false" />
+    <Property Name="idinspeccion" Type="int" Nullable="false" />
+    <Property Name="responsable" Type="bit" />
+  </EntityType>
+  <EntityType Name="Det_Producto">
+    <Key>
+      <PropertyRef Name="iddetallepro" />
+      <PropertyRef Name="idproducto" />
+      <PropertyRef Name="idinspeccion" />
+    </Key>
+    <Property Name="iddetallepro" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idproducto" Type="int" Nullable="false" />
+    <Property Name="idinspeccion" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="observacion" Type="varchar" MaxLength="500" />
+    <Property Name="venta" Type="bit" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="idempleado" />
+    </Key>
+    <Property Name="idempleado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="dni" Type="int" />
+    <Property Name="nombre" Type="varchar" MaxLength="20" />
+    <Property Name="apellidos" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="estado">
+    <Key>
+      <PropertyRef Name="idestado" />
+    </Key>
+    <Property Name="idestado" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Inspeccion">
+    <Key>
+      <PropertyRef Name="idinspeccion" />
+    </Key>
+    <Property Name="idinspeccion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="observaciones" Type="varchar" MaxLength="500" />
+    <Property Name="diadeinspeccion" Type="date" />
+    <Property Name="horainspeccion" Type="time" />
+    <Property Name="idestado" Type="int" />
+    <Property Name="idtiposervi" Type="int" />
+    <Property Name="idsolicitud" Type="int" />
+  </EntityType>
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="idmarca" />
+    </Key>
+    <Property Name="idmarca" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Modelo">
+    <Key>
+      <PropertyRef Name="idmodelo" />
+    </Key>
+    <Property Name="idmodelo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="idproducto" />
+    </Key>
+    <Property Name="idproducto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="varchar" MaxLength="20" />
+    <Property Name="idmodelo" Type="int" />
+    <Property Name="idmarca" Type="int" />
+  </EntityType>
+  <EntityType Name="SolicitudInspeccion">
+    <Key>
+      <PropertyRef Name="idsolicitud" />
+    </Key>
+    <Property Name="idsolicitud" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="referencias" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" />
+    <Property Name="estado" Type="varchar" MaxLength="20" />
+    <Property Name="idcliente" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_rol">
+    <Key>
+      <PropertyRef Name="idRol" />
+    </Key>
+    <Property Name="idRol" Type="int" Nullable="false" />
+    <Property Name="descRol" Type="varchar" Nullable="false" MaxLength="60" />
+    <Property Name="estadoRol" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoServicio">
+    <Key>
+      <PropertyRef Name="idtiposervi" />
+    </Key>
+    <Property Name="idtiposervi" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="usuario" />
+    </Key>
+    <Property Name="usuario" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="clave" Type="varchar" MaxLength="20" />
+    <Property Name="idRol" Type="int" Nullable="false" />
+    <Property Name="verificadoUsuario" Type="bit" Nullable="false" />
+    <Property Name="estadoUsuario" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Inspeccio__idest__22AA2996">
+    <End Role="estado" Type="CoolModel.Store.estado" Multiplicity="0..1" />
+    <End Role="Inspeccion" Type="CoolModel.Store.Inspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estado">
+        <PropertyRef Name="idestado" />
+      </Principal>
+      <Dependent Role="Inspeccion">
+        <PropertyRef Name="idestado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inspeccio__idsol__24927208">
+    <End Role="SolicitudInspeccion" Type="CoolModel.Store.SolicitudInspeccion" Multiplicity="0..1" />
+    <End Role="Inspeccion" Type="CoolModel.Store.Inspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudInspeccion">
+        <PropertyRef Name="idsolicitud" />
+      </Principal>
+      <Dependent Role="Inspeccion">
+        <PropertyRef Name="idsolicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inspeccio__idtip__239E4DCF">
+    <End Role="TipoServicio" Type="CoolModel.Store.TipoServicio" Multiplicity="0..1" />
+    <End Role="Inspeccion" Type="CoolModel.Store.Inspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoServicio">
+        <PropertyRef Name="idtiposervi" />
+      </Principal>
+      <Dependent Role="Inspeccion">
+        <PropertyRef Name="idtiposervi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto__idmarc__1920BF5C">
+    <End Role="Marca" Type="CoolModel.Store.Marca" Multiplicity="0..1" />
+    <End Role="Producto" Type="CoolModel.Store.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="idmarca" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idmarca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto__idmode__182C9B23">
+    <End Role="Modelo" Type="CoolModel.Store.Modelo" Multiplicity="0..1" />
+    <End Role="Producto" Type="CoolModel.Store.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelo">
+        <PropertyRef Name="idmodelo" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idmodelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Solicitud__idcli__1FCDBCEB">
+    <End Role="Cliente" Type="CoolModel.Store.Cliente" Multiplicity="0..1" />
+    <End Role="SolicitudInspeccion" Type="CoolModel.Store.SolicitudInspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idcliente" />
+      </Principal>
+      <Dependent Role="SolicitudInspeccion">
+        <PropertyRef Name="idcliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_detalleempleado_empleado">
+    <End Role="Empleado" Type="CoolModel.Store.Empleado" Multiplicity="1" />
+    <End Role="Det_empleado" Type="CoolModel.Store.Det_empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="idempleado" />
+      </Principal>
+      <Dependent Role="Det_empleado">
+        <PropertyRef Name="idempleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_detalleempleado_inspeccion">
+    <End Role="Inspeccion" Type="CoolModel.Store.Inspeccion" Multiplicity="1" />
+    <End Role="Det_empleado" Type="CoolModel.Store.Det_empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspeccion">
+        <PropertyRef Name="idinspeccion" />
+      </Principal>
+      <Dependent Role="Det_empleado">
+        <PropertyRef Name="idinspeccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_detalleproducto_equipo">
+    <End Role="Producto" Type="CoolModel.Store.Producto" Multiplicity="1" />
+    <End Role="Det_Producto" Type="CoolModel.Store.Det_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idproducto" />
+      </Principal>
+      <Dependent Role="Det_Producto">
+        <PropertyRef Name="idproducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_detalleproducto_inspeccion">
+    <End Role="Inspeccion" Type="CoolModel.Store.Inspeccion" Multiplicity="1" />
+    <End Role="Det_Producto" Type="CoolModel.Store.Det_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspeccion">
+        <PropertyRef Name="idinspeccion" />
+      </Principal>
+      <Dependent Role="Det_Producto">
+        <PropertyRef Name="idinspeccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tb_usuario_tb_rol">
+    <End Role="tb_rol" Type="CoolModel.Store.tb_rol" Multiplicity="1" />
+    <End Role="Usuario" Type="CoolModel.Store.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_rol">
+        <PropertyRef Name="idRol" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="registrarDetalleInspeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idDetPro" Type="int" Mode="In" />
+    <Parameter Name="idProducto" Type="int" Mode="In" />
+    <Parameter Name="idinspeccion" Type="int" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="observacion" Type="varchar" Mode="In" />
+    <Parameter Name="venta" Type="char" Mode="In" />
+  </Function>
+  <Function Name="registrarInspeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="observaciones" Type="varchar" Mode="In" />
+    <Parameter Name="idestado" Type="int" Mode="In" />
+    <Parameter Name="idsolicitud" Type="int" Mode="In" />
+    <Parameter Name="idtiposervi" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_obtenerUltimaInspeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_obtenerUltimaSolicitud" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_obtenerUltimoCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_obtenerUltimoEquipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>

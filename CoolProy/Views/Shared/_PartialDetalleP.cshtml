@@ -1,0 +1,79 @@
+﻿@*@model IList<CoolProy.Models.Det_Producto>*@
+@*@model IEnumerable<CoolProy.Models.Det_Producto>*@
+@model  CoolProy.Models.Encap 
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+
+<div class="table-responsive">
+    
+<table class="table table-bordered table-striped " id="tbdetallepro"  style="width:700px;">
+    <tr>
+        
+        <th>
+           Codigo Detalle
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+           N° Inspeccion
+        </th>
+        <th>
+           Cantidad
+        </th> 
+          
+      
+    </tr>
+
+@foreach (var item in Model.listdepro)
+{
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.iddetallepro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idinspeccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td> 
+         <td>
+            @Ajax.ActionLink("Quitar", "DeleteDet", "Inspeccion", new { @id = item.iddetallepro }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record3" }, new { @class = "fa fa-trash-o" })
+         </td>
+
+    </tr>
+}
+
+</table>
+    </div> 
+<script>
+    function anadirDetalle(data) { 
+        $('#tbdetallepro').html(data);
+    }
+
+</script>
+  <script>
+    $(document).ready(function () {
+        $('#Add').click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $('.divForAdd').html(response);
+            });
+            $('#Add-Model').modal({
+                backdrop: 'static',
+            }, 'show');
+        });
+        $('.editDialog').click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $('.divForUpdate').html(response);
+            });
+            $('#Edit-Model').modal({
+                backdrop: 'static',
+            }, 'show');
+        });
+    });
+</script>

@@ -1,0 +1,64 @@
+﻿@model IList<CoolProy.Models.Producto>
+<div class="table-responsive">
+    <div class="span9">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Codigo</th> 
+                <th>Producto</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idproducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marca.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo.descripcion )
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Producto2", new { id = item.idproducto })" class = "editDialog  btn btn-primary pull-left"><i class="fa fa-pencil-square-o " ></i>&nbsp;↑</a>
+                    </td>
+                    <td>
+                        @Ajax.ActionLink("X", "Delete", "Producto2", new { @id = item.idproducto }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "fa fa-trash-o btn btn-primary pull-left" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    </div>
+<script>
+    $(document).ready(function () {
+        $('#Add').click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $('.divForAdd').html(response);
+            });
+            $('#Add-Model').modal({
+                backdrop: 'static',
+            }, 'show');
+        });
+        $('.editDialog').click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $('.divForUpdate').html(response);
+            });
+            $('#Edit-Model').modal({
+                backdrop: 'static',
+            }, 'show');
+        });
+    });
+</script>

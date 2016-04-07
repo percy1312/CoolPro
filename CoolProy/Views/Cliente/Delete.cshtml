@@ -1,0 +1,80 @@
+﻿@model CoolProy.Models.Encap
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+ 
+
+<h3>Seguro de eliminar el cliente?</h3>
+ 
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cliente.idcliente)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.idcliente)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cliente.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cliente.apellidopat)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.apellidopat)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cliente.apellidomat)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.apellidomat)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cliente.direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.direccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cliente.refedireccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.refedireccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cliente.telefonono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.telefonono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cliente.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cliente.celular)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cliente.celular)
+    </div>
+ 
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Validar";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+
+<!doctype html>
+ <html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">  
+      <link href="estilos.css" rel="stylesheet" type="text/css"> 
+     <link href="css/jquery.rating.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> 
+  <link rel="stylesheet" href="/resources/demos/style.css">
+    
+   
+ 
+<script type="text/javascript">
+
+    function Validar() {
+
+        var usuario = $(stusuario).val();
+        var password = $(stpassword).val();
+
+        if (usuario == '') {
+            $('stusuario').focus();
+
+            return false;
+        }
+
+        if (password == '') {
+            $('stpassword').focus();
+
+            return false;
+        }
+        return true;
+    }
+
+
+</script>
+</head>
+ <body>
+<div class="span9">
+    <br />
+     <br />
+     <br />
+     <br />
+     <br />
+     <br />
+
+      <div class="principal">
+@using (Html.BeginForm())
+{ 
+            @*      
+                          <div class="form-group">
+                              <label>Ingrese Usuario</label>
+                            <input type="text" class="form-control" name="stusuario" placeholder="Ingrese usuario">
+                          </div>
+                          <div class="form-group">
+                             <label>Ingrese Usuario</label>
+                           <input type="password" class="form-control" name="stpassword" placeholder="Ingrese contraseña">
+                          </div>
+                          <div class="checkbox">
+                           <label>
+                          <input type="checkbox" value="0"> Recuérdame
+                             </label>
+                          </div>
+                          <button type="submit" onclick="Validar()" class="btn btn-primary btn-small">Entrar</button>
+                          <span class="color-white">
+                          <button id="btnRegistrarme" type="button" class="btn btn-primary btn-small" style="float:right;">Registrarme</button>
+                          </span>*@
+                      
+               
+   
+    <table class="">
+        <tr>
+            <td>Ingrese Usuario</td>
+            <td>@Html.TextBox("stusuario")</td>
+        </tr>
+          <tr>
+            <td>Ingrese contrasena</td>
+            <td>@Html.Password("stpassword")</td>
+        </tr> <tr>
+            <td></td>
+        </tr>
+         
+         <tr>
+             
+        <td>    
+                          <input type="checkbox" value="0"> Recuérdame        
+        </td> 
+         </tr>
+        <tr>
+             <td colspan="2"><input type="submit" value="Entrar" class="btn btn-primary btn-small"  onclick="Validar();" /> </td>
+             <td>
+              </tr>
+    </table>
+}
+    </div>
+    </div>
+
+ </body>
+
+ </html>

@@ -1,0 +1,57 @@
+﻿@model CoolProy.Models.Modelo
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+    //CoolProy.Models.Equipo equipo = new CoolProy.Models.Equipo();
+}
+
+<h2>Detalle</h2>
+
+<fieldset>
+    <legend>Equipo</legend>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.equipo.idequipo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.equipo.idequipo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.equipo.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.equipo.descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.equipo.Marca.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.equipo.Marca.descripcion)
+    </div>
+    @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.equipo.idequipo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.equipo.idequipo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.equipo.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.equipo.descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.equipo.idmarca)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.equipo.idmarca)
+    </div>*@
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

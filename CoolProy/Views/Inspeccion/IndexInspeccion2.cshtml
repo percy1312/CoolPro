@@ -1,0 +1,97 @@
+﻿@model CoolProy.Models.Encap
+ 
+@{
+    ViewBag.Title = "Inspeccion";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+    CoolProy.Models.Inspeccion inspeccion = new CoolProy.Models.Inspeccion();
+    List<CoolProy.Models.Inspeccion> inspecciones = ViewBag.inspecciones;
+} 
+<div class="span9">
+    
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a> <span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Inspeccion")">Solicitud</a>  <span></span>
+        </li>
+    </ul>
+    <br />
+     @* <div class="row">
+			<div class="span2">
+           <a href="@Url.Action("Create","Inspeccion")" class="btn btn-primary pull-right">Agregar Inspeccion</a>
+			</div>		  
+			 
+          </div>*@
+   <br />
+    
+<table class="table table-bordered table-striped">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => inspeccion.idinspeccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => inspeccion.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => inspeccion.observaciones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => inspeccion.TipoServicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => inspeccion.estado)
+        </th>
+      
+      
+    </tr>
+
+@foreach (var item in inspecciones) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.idinspeccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.observaciones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoServicio.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado.descripcion)
+        </td>
+    
+        <td>
+          
+             <a href="@Url.Action("Edit","Inspeccion",new { id=item.idinspeccion })" class="btn btn-primary pull-right">Realizar la Inspeccion</a>
+             </td>
+         @*   <td> <a href="@Url.Action("Delete","Inspeccion",new { id=item.idinspeccion })" class="btn btn-primary pull-right">Eliminar</a>
+           
+        </td>*@
+
+    </tr>
+}
+
+</table>
+
+     
+
+	      <div class="pagination">
+    <ul>
+    <li><a href="#">Prev</a></li>
+    <li class="active">
+    <a href="#">1</a>
+    </li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">Next</a></li>
+    </ul>
+    </div>
+    </div>
+ 

@@ -1,0 +1,71 @@
+﻿@model CoolProy.Models.Inspeccion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Inspeccion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idinspeccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idinspeccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.codigo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.codigo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fecha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fecha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.observaciones)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.observaciones)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.recomendaciones)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.recomendaciones)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Equipo.marca)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Equipo.marca)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cliente.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cliente.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tecnico.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tecnico.nombre)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

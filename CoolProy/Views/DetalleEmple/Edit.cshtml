@@ -1,0 +1,51 @@
+﻿@model CoolProy.Models.Det_empleado
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Det_empleado</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idempleado, "Empleado")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idempleado", String.Empty)
+            @Html.ValidationMessageFor(model => model.idempleado)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idinspeccion, "Inspeccion")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idinspeccion", String.Empty)
+            @Html.ValidationMessageFor(model => model.idinspeccion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.responsable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.responsable)
+            @Html.ValidationMessageFor(model => model.responsable)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

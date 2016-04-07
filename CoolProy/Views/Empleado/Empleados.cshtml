@@ -1,0 +1,87 @@
+﻿@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    List<CoolProy.Models.Empleado1> empleados = ViewBag.empleados;
+    List<CoolProy.Models.Empleado1> carro = (List<CoolProy.Models.Empleado1>)Session["carro"];
+}
+
+
+<div class="span9">
+    <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a> <span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Alimentos", "Productos")">Alimentos</a>
+        </li>
+    </ul>
+
+	
+	
+	  	 @foreach (var prod in empleados)
+     {
+	  	 <div class="row">
+	   
+	  
+	      <div class="span6">
+	     <h5>@prod.idEmpleado</h5>
+               <h5>@prod.nomEmpleado</h5>
+	      <h5>@prod.apeEmpleado</h5>
+	      </div>	
+
+	     
+	      <div class="span2">
+	       <p>
+                
+                   @using (Html.BeginForm("Agregar", "Empleado", FormMethod.Post, new { @class = "form-inline" }))
+                   {
+                    <input type="hidden" value="@prod.idEmpleado" name="idEmpleado"/>
+                   <input type="hidden" value="1" name="cantidad"/>
+                       if (carro != null)
+                       {
+                           if ((carro.Find(Empleado1 => Empleado1.idEmpleado == prod.idEmpleado)) == null)
+                           {
+                        <input type="submit" class="btn btn-primary" value="Agregar al carro" />
+                       
+                           }
+                           else
+                           {
+                       <a class="btn btn-primary disabled">Agregado</a>
+                           }
+                       }
+                       else
+                       {
+                   <input type="submit" class="btn btn-primary" value="Agregar al carro" />
+                       }
+                   }
+               
+               
+	       </p>
+	     <!--  <p><a class="" href="#">Add to Wish List</a></p>
+	       <p><a class="" href="compare.html">Add to Compare</a></p> -->
+	      </div>
+      </div>
+      <hr />
+     }
+
+
+	  
+	  
+	      <div class="pagination">
+    <ul>
+    <li><a href="#">Prev</a></li>
+    <li class="active">
+    <a href="#">1</a>
+    </li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">Next</a></li>
+    </ul>
+    </div>
+
+
+      </div>
+<script>
+     document.getElementById('catAlimentos').className = "";
+     document.getElementById('catAlimentos').className = "active";
+</script>

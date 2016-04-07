@@ -1,0 +1,428 @@
+﻿@model CoolProy.Models.Encap
+@{
+    ViewBag.Title = "Crear Solicitud";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+    //IEnumerable<CoolProy.Models.Cliente> clientes;
+    //List<CoolProy.Models.Cliente> clientes = (List<CoolProy.Models.Cliente>)ViewBag.clientes;
+    //List<CoolProy.Models.Cliente> clientes = new List<CoolProy.Models.Cliente>();
+}
+
+
+<style>
+    .jumbotron {
+        padding: 14px 0;
+    }
+
+    .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+    }
+</style>
+<!doctype html>
+ <html lang="en">
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link href="css/jquery.rating.css" rel="stylesheet">
+  
+       
+<script type="text/javascript">
+    (function (document) {
+        'use strict';
+
+        var LightTableFilter = (function (Arr) {
+
+            var _input;
+
+            function _onInputEvent(e) {
+                _input = e.target;
+                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                Arr.forEach.call(tables, function (table) {
+                    Arr.forEach.call(table.tBodies, function (tbody) {
+                        Arr.forEach.call(tbody.rows, _filter);
+                    });
+                });
+            }
+
+            function _filter(row) {
+                var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+            }
+
+            return {
+                init: function () {
+                    var inputs = document.getElementsByClassName('light-table-filter');
+                    Arr.forEach.call(inputs, function (input) {
+                        input.oninput = _onInputEvent;
+                    });
+                }
+            };
+        })(Array.prototype);
+
+        document.addEventListener('readystatechange', function () {
+            if (document.readyState === 'complete') {
+                LightTableFilter.init();
+            }
+        });
+
+    })(document);
+</script>		 
+      
+		
+	 
+
+
+   <script>
+
+       $(document).ready(function () {
+            
+           function obtiene_fecha() {
+               var fecha_actual = new Date()
+               var dia = fecha_actual.getDate()
+               var mes = fecha_actual.getMonth() + 1
+               var anio = fecha_actual.getFullYear()
+
+               if (mes < 10)
+                   mes = '0' + mes
+
+               if (dia < 10)
+                   dia = '0' + dia
+
+               return (dia + "/" + mes + "/" + anio)
+           }
+
+           document.getElementById('fecha').value = obtiene_fecha();
+          
+           $(function () {
+               $('.datepicker').datepicker(); 
+           });
+           
+
+           $(".btnSeleccionar").click(function () {
+               //var id = $(this).parent().siblings().eq(0).html();
+               //alert(id);
+                   document.getElementById('idCliente').value = $(this).parent().siblings().eq(0).html().trim();
+                   document.getElementById('nombre').value = $(this).parent().siblings().eq(1).html().trim();
+                   document.getElementById('apellidopat').value = $(this).parent().siblings().eq(2).html().trim();
+                   document.getElementById('apellidomat').value = $(this).parent().siblings().eq(3).html().trim();
+                   document.getElementById('celular').value = $(this).parent().siblings().eq(4).html().trim();
+                   
+                   
+               });
+
+
+
+               //$('.btnSeleccionar').click(function () {
+               //    var _idLoc = $(this).parents('tr').find('#tdIdLoc').html().trim();
+               //    var _nomloc = $(this).parents('tr').find('#tdnom').html().trim();
+               //    var _apepat = $(this).parents('tr').find('#tdapepat').html().trim();
+               //    var _apemat = $(this).parents('tr').find('#tdapemat').html().trim();
+               //    var _cel = $(this).parents('tr').find('#tdcelular').html().trim();
+               //    document.getElementById('idCliente').value = _idLoc;
+               //    document.getElementById('nombre').value = _nomloc;
+               //    document.getElementById('apellidopat').value = _apepat;
+               //    document.getElementById('apellidomat').value = _apemat;
+               //    document.getElementById('celular').value = _cel;
+               //});
+
+
+           });
+       
+       </script>
+    <script>
+        function carga() {
+            $.ajax({
+                url: '@Url.Action("GetModelos", "Empleado")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $("#tblQuery").empty();
+
+                for (var i = 0; i < data.length; i++) {
+                    $("#tblQuery").append("<tr>");
+
+                    $("#tblQuery").append("<td>" + data[i].idmodelo + "</td>");
+                    $("#tblQuery").append("</tr>");
+                }
+            },
+            error: function () { }
+        });
+    }
+    </script>
+</head>
+ <body>
+       
+
+
+    
+
+          
+@using (Html.BeginForm("Create", "SolicitudInsp"))
+{
+    @Html.ValidationSummary(true)
+
+    @*<fieldset>
+        <legend>SolicitudInspeccion</legend>*@
+    <div class="span9">
+
+          <ul class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio</a> <span class="divider">/</span>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "SolicitudInsp")">Solicitud de Inspeccion</a>
+        </li>
+    </ul>
+        <br />
+         <br />
+          
+         <div class="span6">
+        <div class="editor-label">
+            @Html.Label("Nro  Solicitud")
+        </div>
+        <div class="editor-field" >
+           <input type="text" placeholder="nro" readonly="true"/> 
+        </div>
+        </div>
+     
+
+
+         <div class="span6">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mdl1.Cliente.idcliente, "Cliente")
+        </div>
+        <div class="editor-field">
+            <input name="idcliente" id="idCliente" type="text" placeholder="" readonly="true" required class="form-control " />
+              @*@Html.EditorFor(model => model.mdl1.Cliente.idcliente, new { @class = "form-control", @placeholder = "descripcion", @id = "descripcion" })*@ 
+            @*@Html.DropDownList("idcliente", String.Empty)*@
+            @Html.ValidationMessageFor(model => model.mdl1.idcliente) 
+           @* <div class="col-md-1">
+                <a href="#" class="btn btn-default"
+                   data-toggle="modal" data-target="#buscar_paciente">
+                    Buscar <i class="fa fa-search"></i>
+                </a>
+            </div>*@
+                    <button  type="button" class="btn btn-primary btn-small" data-toggle="modal" data-target="#myModal">
+                     Buscar
+                    </button> 
+             </div>
+            
+             </div>
+
+        <div class="editor-label">
+             <a>Fecha</a>
+        </div>
+        <div class="editor-field">
+            <div class="form-group input-group-sm">
+                  <input name="fecha" id="fecha" type="text" readonly="true" required class="form-control datepicker" />
+                   @Html.ValidationMessageFor(model => model.mdl1.fecha)
+            </div>
+                </div>
+        
+        <div class="editor-label">
+           <a>Nombre cliente</a>
+        </div>
+        <div class="editor-field">
+            <input type="text" required   id="nombre" placeholder="nombre" class="form-control" readonly="true"/>
+            
+        </div>
+
+
+         <div class="span6">
+          <div class="editor-label">
+           <a>Apellido Paterno</a>
+        </div>
+        <div class="editor-field">
+            <input  id="apellidopat" placeholder="Apellido Paterno" class="form-control" readonly="true"/>
+             
+        </div>
+
+             </div>
+
+          <div class="editor-label">
+           <a>Apellido Materno</a>
+        </div>
+        <div >
+            <input  required  readonly="true" id="apellidomat" />
+             
+        </div>
+
+             <div class="span6">
+          <div class="editor-label">
+           <a>Celular</a>
+        </div>
+        <div class="editor-field">
+            <input  id="celular" placeholder="Celular" class="form-control" readonly="true"/>
+             
+        </div>
+
+             </div>
+
+        <div class="span6">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mdl1.referencias)
+        </div>
+        <div class="editor-field">
+            <textarea name="referencias" required   placeholder="referencias" class="form-control" ></textarea>
+             @Html.ValidationMessageFor(model => model.mdl1.referencias) 
+        </div>
+             </div>
+
+           
+        
+           
+        <div class="span6">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mdl1.descripcion)
+        </div>
+        <div class="editor-field">
+            <textarea name="descripcion" id="descripcion" required  placeholder="descripcion" class="form-control" ></textarea>
+            @*@Html.TextAreaFor(model => model.mdl1.descripcion, new { @class = "form-control", @placeholder = "descripcion", @id = "descripcion" })*@ 
+            @Html.ValidationMessageFor(model => model.mdl1.descripcion)
+        </div>
+         </div>
+
+          <div class="span6">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mdl1.estado)
+        </div>
+        <div class="editor-field">
+       <select class="form-control" name="estado" >
+        <option >Pendiente</option>
+        <option  >Aceptado</option>
+        <option >Rechazado</option> 
+</select>
+            @*@Html.DropDownListFor("idestado", (SelectList)ViewBag.idestado )*@
+            @Html.ValidationMessageFor(model => model.mdl1.estado)
+        </div> 
+              </div>
+  
+
+        <div class="span6" >
+         <div>
+              
+             <!-- Modal -->
+             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                 <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                         <div class="modal-header">
+                             <button type="button" class="close"  data-dismiss="modal"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title" id="myModalLabel">Clientes Registrado</h4>
+                         </div>
+                         <div class="modal-body">
+
+                            @* @using (Html.BeginForm("BuscarCliente", "Cliente", FormMethod.Post))
+                             {
+                               <p>
+                            Búsqueda por nombre: @Html.TextBox("CadenaBusqueda")
+                              <button type="button" class="btn btn-default" id="btnBuscarClien"></button>
+                            <input type="submit" value="Buscar" />
+                            </p>
+                                }   *@
+
+                             
+		                <div id="cuadro">
+			        <center>
+	    			 
+	            <div class="derecha" id="buscar">Buscar <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtro"></div>
+	            </center>
+
+ 
+
+	            	</div> 
+                             <table class="table table-bordered table-striped order-table" >
+
+                                 <tr>
+                                     <th>
+                                         @Html.DisplayNameFor(model => model.mdl1.Cliente.idcliente)
+                                     </th>
+                                     <th>
+                                         @Html.DisplayNameFor(model => model.mdl1.Cliente.nombre)
+                                     </th>
+                                     <th>
+                                         @Html.DisplayNameFor(model => model.mdl1.Cliente.apellidopat)
+                                     </th>
+                                     <th>
+                                         @Html.DisplayNameFor(model => model.mdl1.Cliente.apellidomat)
+                                     </th>
+                                       <th>
+                                         @Html.DisplayNameFor(model => model.mdl1.Cliente.celular)
+                                     </th>
+                                 </tr>
+                                 @foreach (var item in Model.mdl2)
+                                 {
+                                    
+                                     <tr>
+                                           <td id="tdIdLoc">
+                                             @Html.DisplayFor(modelItem => item.idcliente)
+                                         </td>
+                                         <td id="tdnom">
+                                             @Html.DisplayFor(modelItem => item.nombre)
+                                         </td>
+                                         <td id="tdapepat">
+                                             @Html.DisplayFor(modelItem => item.apellidopat)
+                                         </td>
+                                         <td id="tdapemat">
+                                             @Html.DisplayFor(modelItem => item.apellidomat)
+                                         </td >
+                                         <td id="tdcelular">
+                                             @Html.DisplayFor(modelItem => item.celular)
+                                         </td >
+                                         <td id="tdselect">
+
+                                             <a href='#' class='btnSeleccionar' data-dismiss='modal' >Seleccionar</a>
+         
+                             </td>      
+                                     </tr>
+                                 } 
+                             </table>
+                              
+                         </div>
+                         <div class="modal-footer">
+                             <a href="@Url.Action("Create", "Cliente2")" class="btn btn-primary">Nuevo Cliente</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+           
+        </div>
+
+              </div> 
+
+
+         <div class="span6" >
+           <br />
+                      <br />
+               </div> 
+
+
+        <div class="span6" >
+        <button  type="submit" value="Registrar" class="btn btn-primary pull-left" onclick="validar()">Registrar</button>
+              <a href="@Url.Action("Index", "SolicitudInsp")" class="btn btn-primary pull-right">Regresar</a>
+         </div>
+   
+      </div>
+}
+    
+          
+</body>
+  
+</html>
+
+
+<script type="text/javascript">
+           
+    </script>

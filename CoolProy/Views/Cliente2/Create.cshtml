@@ -1,0 +1,224 @@
+﻿@model CoolProy.Models.Cliente
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+  
+}
+ 
+
+@*<script>
+    function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+</script>*@
+@*<script>
+    function validarSiNumero(numero) {
+        if (!/^([0-9])*$/.test(numero))
+            alert("El valor " + numero + " no es un número");
+    }
+</script>*@
+
+<script>
+    function soloNumeros(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = "0123456789";
+        //letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+        especiales = [8, 37, 39, 46];
+
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial)
+            return false;
+    }
+
+    //function limpia() {
+    //    var val = document.getElementById("idnombre").value; 
+    //    var tam = val.length;
+       
+    //    for (i = 0; i < tam; i++) {
+    //        if (!isNaN(val[i]))
+    //            document.getElementById("idnombre").value = '';
+    //        //document.getElementById("idapellidopat").value = '';
+    //    }
+    //}
+</script>
+
+<script>
+    function soloLetras(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
+        //letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+        especiales = [8, 37, 39, 46];
+
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial)
+            return false;
+    }
+</script>
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+<div class="span9">
+
+            <ul class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Cliente")">Cliente</a> <span class="divider">/</span>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "SolicitudInsp")">Ir a Solicitud</a>
+                </li>
+            </ul>
+            <br />
+            <br />
+    @*<input type="text" onkeypress="return soloLetras(event)" placeholder="1">
+    <INPUT type="text" SIZE=10 id="cantidad"  placeholder="2" onChange="validarSiNumero(this.value);">
+    <input type="text" onkeypress="return soloLetras(event)" onblur="limpia()" id="miInput" placeholder*@
+
+             <div class="span6">
+        <div class="editor-label">
+            @Html.Label("Codigo")
+        </div>
+        <div class="editor-field" >
+           <input type="text" placeholder="Nro" readonly="true"/> 
+        </div>
+        </div>
+            
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.nombre)
+            </div>
+            <div class="editor-field">
+                <input name="nombre" type="text" required="required" onkeypress="return soloLetras(event)" id="idnombre"   placeholder="nombre" class="form-control" />
+                @*@Html.EditorFor(model => model.nombre, new { @class = "form-control", @placeholder = "nombre", @id = "nombre"  })*@
+                @Html.ValidationMessageFor(model => model.nombre)
+            </div>
+
+            <div class="span6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.apellidopat)
+                </div>
+                <div class="editor-field">
+                    <input name="apellidopat" required="required" type="text" onkeypress="return soloLetras(event)" id="idapellidopat" onblur="limpia()" placeholder="apellido paterno" class="form-control" />
+                    @*@Html.EditorFor(model => model.apellidopat, new { @class = "form-control", @placeholder = "apellido paterno", @id = "apellidopat"  })*@
+                    @Html.ValidationMessageFor(model => model.apellidopat)
+                </div>
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.apellidomat)
+            </div>
+            <div class="editor-field">
+                <input name="apellidomat" required="required" type="text" onkeypress="return soloLetras(event)" placeholder="apellido materno" class="form-control" />
+                @*@Html.EditorFor(model => model.apellidomat, new { @class = "form-control", @placeholder = "apellido materno", @id = "apellido materno"  })*@
+                @Html.ValidationMessageFor(model => model.apellidomat)
+            </div>
+
+
+            <div class="span6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.direccion)
+                </div>
+                <div class="editor-field">
+                    <input name="direccion" required="" type="text" placeholder="direccion" class="form-control" />
+                    @*@Html.EditorFor(model => model.direccion, new { @class = "form-control", @placeholder = "direccion", @id = "direccion"  })*@
+                    @Html.ValidationMessageFor(model => model.direccion)
+                </div>
+            </div>
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.refedireccion)
+            </div>
+            <div class="editor-field">
+                <input name="refedireccion" required="" type="text" placeholder="referencia" class="form-control" />
+                @*@Html.EditorFor(model => model.refedireccion, new { @class = "form-control", @placeholder = "referencia", @id = "referencia"  })*@
+                @Html.ValidationMessageFor(model => model.refedireccion)
+            </div>
+
+
+            <div class="span6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.telefonono)
+                </div>
+                <div class="editor-field">
+                    <input name="telefonono" required="" type="text" onkeypress="return soloNumeros(event)" placeholder="telefono" class="form-control" />
+                    @*@Html.EditorFor(model => model.telefonono, new { @class = "form-control", @placeholder = "telefonono", @id = "telefonono" })*@
+                    @Html.ValidationMessageFor(model => model.telefonono)
+                </div>
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.email)
+            </div>
+            <div class="editor-field">
+                 <input  name="email" type="email" required="required" placeholder="email" class="form-control" />
+                   
+                @*@Html.EditorFor(model => model.email, new { @class = "form-control", @placeholder = "email", @id = "email" })*@
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+
+
+            <div class="span6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.celular)
+                </div>
+                <div class="editor-field">
+                    <input name="celular"  type="text" onkeypress="return soloNumeros(event)" required="required" placeholder="celular" class="form-control" SIZE=10 id="celular" onChange="validarSiNumero(this.value);" />
+                    @*@Html.EditorFor(model => model.celular, new { @class = "form-control", @placeholder = "celular", @id = "celular" })*@
+                    @Html.ValidationMessageFor(model => model.celular)
+                </div>
+            </div>
+            <div class="span6">
+                <br />
+                <br />
+            </div>
+
+
+        
+            <div class="span6">
+                <button type="submit" value="Registrar" class="btn btn-primary pull-left">Crear</button>
+                 <a href="@Url.Action("Index", "SolicitudInsp")" class="btn btn-primary pull-right">Regresar</a>
+            </div> 
+           @* <div class="editor-label">
+              <input type="button" value=""/>
+            </div>*@
+               
+       
+
+        </div>
+   
+}
+ 
+ 

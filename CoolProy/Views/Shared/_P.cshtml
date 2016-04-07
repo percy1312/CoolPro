@@ -1,0 +1,57 @@
+﻿@model CoolProy.Models.Encap
+
+<div class="table-responsive">
+    
+    <table class="table table-bordered table-striped"  style="width:700px;">
+        <thead>
+            <tr>
+                <th>Codigo Empleado</th>
+                <th>Nombre Empleado</th>
+                <th>Apellido Empleado</th>
+          
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.listdetemple)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idempleado)
+                    </td> 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Empleado.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Empleado.apellidos)
+                    </td> 
+ 
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@*<script>
+    $(document).ready(function () {
+        $('#Add').click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $('.divForAdd').html(response);
+            });
+            $('#Add-Model').modal({
+                backdrop: 'static',
+            }, 'show');
+        });
+        $('.editDialog').click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $('.divForUpdate').html(response);
+            });
+            $('#Edit-Model').modal({
+                backdrop: 'static',
+            }, 'show');
+        });
+    });
+</script>*@

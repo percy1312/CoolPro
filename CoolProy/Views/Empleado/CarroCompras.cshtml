@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Carro de Compras";
+    //Layout = "~/Views/Plantillas/plantilla.cshtml";
+    List<CoolProy.Models.Empleado1> carro = (List<CoolProy.Models.Empleado1>)Session["carro"];
+}
+
+<div class="span12">
+
+	 
+	<h1> Carro de Compras</h1><br />
+	 <span id="mensaje" style="color:red;"></span>
+        <table class="table table-bordered table-striped">
+		  <thead>
+			  <tr> 
+				<th style="text-align:center;">Codigo</th>
+				<th style="text-align:center;">Nombre</th>
+				<th style="text-align:center;">Apellido</th> 
+			  </tr>
+			</thead>
+			<tbody>
+                @foreach(var prod in carro){
+                    
+                    
+			  <tr>
+                  <td>@prod.idEmpleado</td>
+					<td>@prod.nomEmpleado</td>
+                  <td>@prod.apeEmpleado</td> 
+			  </tr>		
+                    
+                }
+			     
+			</tbody>
+		  </table>
+		   
+
+    </div>
+
+<script>
+    $(document).ready(function () {
+
+
+        validarStockCarro = function (idProducto) {
+            var cantidad = $("#txtCantidad" + idProducto).val();
+            var stock = $("#txtStock" + idProducto).val();
+            var nombre = $("#txtNombre" + idProducto).val();
+
+
+            if (Number(cantidad) > Number(stock)) {
+                $("#txtCantidad" + idProducto).val(stock);
+                $("#mensaje").html("Lo sentimos, no tenemos stock para la cantidad ingresada, Producto: <b>" + nombre + "</b>, stock: <b>" + stock + "</b>");
+                return false;
+            }
+        };
+
+        calcularTotal = function (idProducto) {
+            $("#form" + idProducto).submit();
+        }
+    });
+
+</script>

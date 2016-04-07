@@ -1,0 +1,415 @@
+﻿@model CoolProy.Models.Encap
+
+@{
+    ViewBag.Title = " Editar Registro de Inspeccion";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+ <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+ <script>
+
+     $(function () {
+         $("#datepicker").datepicker();
+     });
+</script>
+
+@using (Html.BeginForm("Edit", "Inspeccion", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+      <div class="span9">
+
+
+                <ul class="breadcrumb">
+                     <li>
+                    <a href="@Url.Action("Index", "Home")">Inicio</a> <span class="divider">/</span>
+                     </li>
+                     <li>
+                    <a href="@Url.Action("Index", "Inspeccion")">Solicitud de Inspeccion</a>
+                     </li>
+                     </ul>
+                 <br />
+                 <br />
+          @*<input type="checkbox" style="width:40px; height:40px"  />*@
+         
+          <input type="hidden" name="idproductos" id="idpro"/>
+          <input type="HIDDEN" name="cantidades" id="idcantidad" />
+     <div class="span6">
+      <div class="editor-label"> 
+            @Html.LabelFor(model => model.mdinspecion.idinspeccion)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.mdinspecion.idinspeccion, new {@readonly="readonly" ,@class ="form-control",@style="width:50px;",@id="idins"})
+            @Html.ValidationMessageFor(model => model.mdinspecion.idinspeccion)
+        </div>
+           </div>
+
+         @Html.HiddenFor(m => m.mdinspecion.idsolicitud)
+
+        <div class="editor-label">
+            @Html.Label("Fecha del documento")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.mdinspecion.fecha, "{0:dd/MM/yyyy}", new {@readonly="readonly", @id="fecha" ,@class = "datefield form-control" })
+            @Html.ValidationMessageFor(model => model.mdinspecion.fecha)
+        </div>
+
+             <div class="span6">
+        <div class="editor-label">
+             @Html.Label("Dia de Inspeccion")
+        </div>
+                 
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.mdinspecion.diadeinspeccion, "{0:dd/MM/yyyy}", new {@readonly="readonly",  @class = "datefield form-control"})
+            @Html.ValidationMessageFor(model => model.mdinspecion.diadeinspeccion)
+        </div>
+                  </div>
+           
+            <div class="editor-label">
+                    @Html.Label("Hora de Inspeccion")
+                </div>
+                  <div class="editor-field">
+                 @Html.TextBoxFor(model => model.mdinspecion.horainspeccion , new {@readonly="readonly"   })
+                    @*<input type="time"  name="horainspeccion" value="00:00" style="width:70px;">*@
+                           </div>
+
+        <div class="span6">
+                 <div class="editor-label">
+                    @Html.LabelFor(model => model.mdinspecion.TipoServicio, "Tipo de Servicio")
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.mdinspecion.idtiposervi, (SelectList)ViewBag.idtiposervi) 
+                </div>
+            </div>
+
+             <div class="editor-label">
+                     @Html.LabelFor(model => model.mdinspecion.idestado, "Estado")
+                </div>
+                <div class="editor-field"> 
+                    @Html.DropDownListFor(model => model.mdinspecion.idestado, (SelectList)ViewBag.idestado) 
+            @Html.ValidationMessageFor(model => model.mdinspecion.idestado) 
+        </div>
+             
+                       <div class="span6">
+                    <div class="editor-label">
+                    @Html.Label("Observación")
+                     </div>
+                      <div class="editor-field" >
+                           @Html.TextAreaFor(model => model.mdinspecion.observaciones, new { @rows = "9", @class = "input-block-level", @id = "idobservacion" })
+                   
+                    @Html.ValidationMessageFor(model => model.mdinspecion.observaciones)
+                            </div>
+                        </div> 
+                
+
+           <div class="span6"> @*<a href="@Url.Action("Create","Inspeccion")" class="btn btn-primary pull-right">Realizar Inspeccion</a>*@
+                    <button type="submit" name="crear" value="Realizar" onclick="" class="btn btn-primary pull-left">Realizar</button> 
+            </div>
+ 
+
+           </div>
+}
+           <div class="span9">   <!-- span9 del nav tab -->
+
+                       <br />
+                        <br />
+                        <br />
+                         <div>
+
+                             <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Responsables de Inspeccion</a></li>
+                             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Equipos y Materiales</a></li>
+                             </ul>
+
+                             <!-- Tab panes -->
+                            <div class="tab-content">
+                             <div role="tabpanel" class="tab-pane fade in active" id="home">  <!-- Tab 1 -->
+                                @* <button  type="button" class="btn btn-primary btn-small" data-toggle="modal" data-target="#myModal" onclick="carga();">
+                                     Añadir Tecnico
+                                  </button>*@
+                                  <div class="container">
+        
+                                 <div id="div-record2">
+                                  @Html.Partial("_P")
+            </div>
+    </div>
+                                 @*<input type="text" id="idpro"/>*@
+                      
+            @*    <table border="1" class="table table-bordered table-striped ">
+                 <thead>
+                   <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+               <th>Apellidos</th>
+               <th>Jefe de Equipo</th>
+                 <th>Opcion</th>
+                  </tr>
+                </thead>
+                <tbody id="tblCarro">
+                
+                </tbody>
+            </table>*@
+                                 @*<input type="text" id="idempleado"/>*@
+
+                               @*   <table class="table table-bordered table-striped" id="tbldel">
+                                      <thead>
+			                            <tr>
+				                        <th style="text-align:center;">Codigo</th>
+				                        <th style="text-align:center;">Empleado</th>  
+                                        <th style="text-align:center;">Apellido</th> 
+                                        <th style="text-align:center;">Lider de Equipo</th> 
+                                        <th style="text-align:center;">Quitar</th>   
+			                            </tr>
+			                          </thead>
+                                      <tbody id="tbldetalle"  >
+                                         
+                                        <tr>  
+                                              <td><input id="idemp" /></td>
+                                              <td><input id="nomemp"/></td>
+                                              <td><input id="apeemp"/></td> 
+                                            
+                                          </tr>
+                                     @foreach (var prod in carro)
+                                     {
+			  <tr> 
+                  <td id="tdidempleado">@prod.idEmpleado</td>
+				  <td id="tdnomemple">@prod.nomEmpleado</td>
+                  <td id="tdiapeemple">@prod.apeEmpleado</td> 
+                  <td><input type="checkbox" class="form-control" /></td>
+                  <td style="text-align:center;"> <input type="hidden" value="@prod.idEmpleado" name="idEmpleado"/>
+                  <a href="@Url.Action("Descartar", "Inspeccion", new { idemp = @prod.idEmpleado })">Quitar</a></td>
+			  </tr>		
+                    
+                                     }
+                                    </tbody>
+
+                                  </table>*@
+                              
+
+
+                             </div><!-- Tab 1  end-->
+
+                             <div role="tabpanel" class="tab-pane fade " id="profile">
+                                 <button  type="button" class="btn btn-primary btn-small" data-toggle="modal" onclick="limpiar();" data-target="#myModal2">
+                                     Buscar Equipo
+                                  </button>
+                                 <br />
+                                 <br />
+
+
+@*                                 <table  class="table table-bordered table-striped"> 
+                                       <tbody id="tbldetpro" >
+                                    <tr></tr>
+ 
+                                           </tbody>
+                                    </table>*@
+                                     
+        
+                                 <div id="div-record">
+                                  @Html.Partial("AnadirProducto")
+                             </div>
+                                      <div id="div-record3">
+                          @Html.Partial("_PartialDetalleP")
+                                </div>    
+                              @*<div  id="div-record3" >
+                                  @Html.Partial("_PartialDetalleP")
+                    
+                                    
+    </div>*@
+
+
+ 
+                             </div> <!-- Tab 2 end-->
+                                 
+
+                            </div>
+
+                        </div>
+                    </div>  <!-- span9 del nav tab end-->
+
+      
+        @* <input type="date" data-date="" data-date-format="DD MMMM YYYY"  > *@
+        
+  <!--  start modal 2-->    
+                <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                 <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                         <div class="modal-header">
+                             <button type="button" class="close"  onclick="carga();" data-dismiss="modal"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                             <h4 class="modal-title" id="myModalLabel2">Equipo Registrado</h4>
+                         </div>
+                         <div class="modal-body">
+
+                           <div id="cuadro">
+			                 <center> 
+	                         <div class="derecha" id="buscar">Buscar <input type="search" class="light-table-filter" data-table="order-table" placeholder="Filtro"></div>
+	                         </center>
+ 
+	            	       </div> 
+                             @*@Html.Partial("_PartialDetallePro")*@
+                              <table class="table table-bordered table-striped order-table" >
+                                  
+                                 @foreach (var item in Model.listpro)
+                                 {
+                                    
+                                <tr>
+                                     <td id="tdpro">
+                                          
+                                             @Html.DisplayFor(modelItem => item.idproducto)
+                                      </td>
+                                      <td>
+                                             @Html.DisplayFor(modelItem => item.descripcion)
+                                      </td>
+                                    <td>
+                                             @Html.DisplayFor(modelItem => item.Marca.descripcion)
+                                      </td>
+                                      <td>
+                                             @Html.DisplayFor(modelItem => item.Modelo.descripcion)
+                                      </td>
+                                @*    <td style="text-align:center;" id="tdcant">
+                                        <input type="text" class="input-mini" 
+                                               name="cantidad" required id="idcan" >
+
+                                    </td> *@
+                                    @*<td>
+                                            <input type="checkbox" id="idche"/>
+                                      </td>*@
+                                    <td >
+                                      
+                                          <a href='#' class='btnSeleccionar' data-dismiss='modal'   >Seleccionar</a> 
+                                    </td>
+                                     
+                                             </tr>
+                                 }
+
+                             </table>  
+
+
+                             @*<input id="btnCarga2" type="button" value="Cargar Tabla.." onclick="cargaequipo();" />*@
+                            @*          <table border="1"  class="table table-bordered table-striped ">
+                               <thead>
+                                  <tr>
+                                         <th>Id</th> 
+                                         <th>Producto</th> 
+                                      <th>Modelo</th> 
+                                      <th>Marca</th> 
+                                  </tr>
+                             </thead>
+                   <tbody id="tblQuery" >
+                   </tbody>
+                   </table>*@
+                            
+                         </div> 
+                     </div>
+                 </div>
+             </div>  <!--  finish modal 2-->   
+
+<script>
+    //$('.btnSeleccionar').click(function () {
+    //    var _idLoc = $(this).parents('tr').find('#tdcant').children('input', '#idcan').val();
+    //    alert(_idLoc);  
+    //});
+    $(".btnSeleccionar").click(function () {
+        //var id = $(this).parent().siblings().eq(0).html();
+        //alert(id);
+        document.getElementById('idproducto').value = $(this).parent().siblings().eq(0).html().trim();
+        document.getElementById('producto').value = $(this).parent().siblings().eq(1).html().trim();
+        document.getElementById('marca').value = $(this).parent().siblings().eq(2).html().trim();
+        document.getElementById('modelo').value = $(this).parent().siblings().eq(3).html().trim(); 
+        document.getElementById('idinspeccion').value = document.getElementById('idins').value;  
+
+    });
+
+    //$('.btnSeleccionar2').click(function () {
+    //    var _idLoc = $(this).parents('tr').find('#tdpro').val();
+    //    var aa = document.getElementById("#idobservacion").value;
+    //    alert(_idLoc);
+    //});
+</script>
+<script>
+    $(".btnSeleccionar2").click(function () {
+        //var aa = document.getElementById('idventa').value;
+        var tbl = document.getElementById('tbldetpro');
+        var lastRow = tbl.rows.length;
+        var row = tbl.insertRow(0);
+
+        var idpro = $(this).parent().siblings().eq(0).html().trim();
+        var idcanti = $(this).parent().siblings().eq(4).children('input', '#idcan').val();
+        //var idche = $(this).parent().siblings().eq(5).children('input', '#idche').val();
+        var idche = $(this).parent().siblings().eq(5).html().trim();
+
+        row.innerHTML = "<div class='span6'><div class='span1'> <tr><h5>Nro." + $(this).parent().siblings().eq(0).html().trim() + "</h5> <br />  <h5>" + $(this).parent().siblings().eq(1).html().trim() + " </h5>  </div>  </div><br /> "
+              + "<div class='span1'> <h5>Cantidad:" + $(this).parent().siblings().eq(4).children('input', '#idcan').val() + " </h5><br/><h5>Venta: </h5> <input style='width:20px; height:20px' type='checkbox'/>  </div> <br /><div class='span6'><div class='span1'>  <h5> <textarea name='observaciones'    placeholder='observaciones' class='form-control' ></textarea></h5>  <br /><h5> <textarea name='recomendaciones'    placeholder='recomendaciones' class='form-control' ></textarea></h5></div></div>" +
+             "<div class='span6'><a href='#' onclick = 'Eliminar2(this.parentNode.parentNode.rowIndex)' >Quitar</a> <div class='span1'><h5>_________________________________________________________________________________________________________</h5></div></div></tr>";
+        //alert(aa);
+        var cantidadactual = document.getElementById('idcantidad').value;
+        var valoractual = document.getElementById('idpro').value;
+        document.getElementById('idpro').value = idpro + "," + valoractual;
+        document.getElementById('idcantidad').value = idcanti + "," + cantidadactual;
+        
+        return false;
+        
+    });
+   
+  </script>
+<script>
+    function limpiar() {
+        document.getElementById("cantidad").value = "";
+        document.getElementById("producto").value = "";
+        document.getElementById("modelo").value = "";
+        document.getElementById("marca").value = "";
+        document.getElementById("observacion").value = "";
+        document.getElementById("idventa").checked = false;
+        document.getElementById("idven").value = false;
+    }
+</script>
+<script> 
+    function Eliminar2(i) {
+        document.getElementById("tbldetpro").deleteRow(i);
+    }
+</script>
+<script type="text/javascript">
+    (function (document) {
+        'use strict';
+
+        var LightTableFilter = (function (Arr) {
+
+            var _input;
+
+            function _onInputEvent(e) {
+                _input = e.target;
+                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                Arr.forEach.call(tables, function (table) {
+                    Arr.forEach.call(table.tBodies, function (tbody) {
+                        Arr.forEach.call(tbody.rows, _filter);
+                    });
+                });
+            }
+
+            function _filter(row) {
+                var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+            }
+
+            return {
+                init: function () {
+                    var inputs = document.getElementsByClassName('light-table-filter');
+                    Arr.forEach.call(inputs, function (input) {
+                        input.oninput = _onInputEvent;
+                    });
+                }
+            };
+        })(Array.prototype);
+
+        document.addEventListener('readystatechange', function () {
+            if (document.readyState === 'complete') {
+                LightTableFilter.init();
+            }
+        });
+
+    })(document);
+</script>	
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

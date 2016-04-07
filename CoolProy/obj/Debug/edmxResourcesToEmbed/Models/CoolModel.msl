@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CoolModelStoreContainer" CdmEntityContainer="CoolEntities">
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="CoolModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidopat" ColumnName="apellidopat" />
+          <ScalarProperty Name="apellidomat" ColumnName="apellidomat" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="refedireccion" ColumnName="refedireccion" />
+          <ScalarProperty Name="telefonono" ColumnName="telefonono" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="celular" ColumnName="celular" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Det_empleado">
+      <EntityTypeMapping TypeName="CoolModel.Det_empleado">
+        <MappingFragment StoreEntitySet="Det_empleado">
+          <ScalarProperty Name="idempleado" ColumnName="idempleado" />
+          <ScalarProperty Name="idinspeccion" ColumnName="idinspeccion" />
+          <ScalarProperty Name="responsable" ColumnName="responsable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Det_Producto">
+      <EntityTypeMapping TypeName="CoolModel.Det_Producto">
+        <MappingFragment StoreEntitySet="Det_Producto">
+          <ScalarProperty Name="iddetallepro" ColumnName="iddetallepro" />
+          <ScalarProperty Name="idproducto" ColumnName="idproducto" />
+          <ScalarProperty Name="idinspeccion" ColumnName="idinspeccion" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="venta" ColumnName="venta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="CoolModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="idempleado" ColumnName="idempleado" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estado">
+      <EntityTypeMapping TypeName="CoolModel.estado">
+        <MappingFragment StoreEntitySet="estado">
+          <ScalarProperty Name="idestado" ColumnName="idestado" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inspeccion">
+      <EntityTypeMapping TypeName="CoolModel.Inspeccion">
+        <MappingFragment StoreEntitySet="Inspeccion">
+          <ScalarProperty Name="idinspeccion" ColumnName="idinspeccion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="diadeinspeccion" ColumnName="diadeinspeccion" />
+          <ScalarProperty Name="horainspeccion" ColumnName="horainspeccion" />
+          <ScalarProperty Name="idestado" ColumnName="idestado" />
+          <ScalarProperty Name="idtiposervi" ColumnName="idtiposervi" />
+          <ScalarProperty Name="idsolicitud" ColumnName="idsolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marca">
+      <EntityTypeMapping TypeName="CoolModel.Marca">
+        <MappingFragment StoreEntitySet="Marca">
+          <ScalarProperty Name="idmarca" ColumnName="idmarca" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modelo">
+      <EntityTypeMapping TypeName="CoolModel.Modelo">
+        <MappingFragment StoreEntitySet="Modelo">
+          <ScalarProperty Name="idmodelo" ColumnName="idmodelo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="CoolModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="idproducto" ColumnName="idproducto" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idmodelo" ColumnName="idmodelo" />
+          <ScalarProperty Name="idmarca" ColumnName="idmarca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SolicitudInspeccion">
+      <EntityTypeMapping TypeName="CoolModel.SolicitudInspeccion">
+        <MappingFragment StoreEntitySet="SolicitudInspeccion">
+          <ScalarProperty Name="idsolicitud" ColumnName="idsolicitud" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="referencias" ColumnName="referencias" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_rol">
+      <EntityTypeMapping TypeName="CoolModel.tb_rol">
+        <MappingFragment StoreEntitySet="tb_rol">
+          <ScalarProperty Name="idRol" ColumnName="idRol" />
+          <ScalarProperty Name="descRol" ColumnName="descRol" />
+          <ScalarProperty Name="estadoRol" ColumnName="estadoRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoServicio">
+      <EntityTypeMapping TypeName="CoolModel.TipoServicio">
+        <MappingFragment StoreEntitySet="TipoServicio">
+          <ScalarProperty Name="idtiposervi" ColumnName="idtiposervi" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="CoolModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="usuario1" ColumnName="usuario" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="idRol" ColumnName="idRol" />
+          <ScalarProperty Name="verificadoUsuario" ColumnName="verificadoUsuario" />
+          <ScalarProperty Name="estadoUsuario" ColumnName="estadoUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="registrarDetalleInspeccion" FunctionName="CoolModel.Store.registrarDetalleInspeccion" />
+    <FunctionImportMapping FunctionImportName="registrarInspeccion" FunctionName="CoolModel.Store.registrarInspeccion" />
+    <FunctionImportMapping FunctionImportName="usp_obtenerUltimaInspeccion" FunctionName="CoolModel.Store.usp_obtenerUltimaInspeccion" />
+    <FunctionImportMapping FunctionImportName="usp_obtenerUltimaSolicitud" FunctionName="CoolModel.Store.usp_obtenerUltimaSolicitud" />
+    <FunctionImportMapping FunctionImportName="usp_obtenerUltimoCliente" FunctionName="CoolModel.Store.usp_obtenerUltimoCliente" />
+    <FunctionImportMapping FunctionImportName="usp_obtenerUltimoEquipo" FunctionName="CoolModel.Store.usp_obtenerUltimoEquipo" />
+  </EntityContainerMapping>
+</Mapping>

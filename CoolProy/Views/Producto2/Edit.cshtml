@@ -1,0 +1,47 @@
+﻿ @model CoolProy.Models.Producto
+@using (Ajax.BeginForm("Edit", "Producto2", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
+{
+    @Html.HiddenFor(m => m.idproducto)
+    <div class="modal-body">
+
+         <div class="span6">
+         <div class="editor-label">
+            @Html.LabelFor(model => model.idproducto)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.idproducto, new {@readonly="readonly" })
+            @Html.ValidationMessageFor(model => model.idproducto)
+        </div> 
+            </div> 
+         
+         <div class="editor-label">
+            @Html.LabelFor(model => model.descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.descripcion)
+            @Html.ValidationMessageFor(model => model.descripcion)
+        </div>  
+
+        <div class="span6">
+          <div class="editor-label">
+            @Html.LabelFor(model => model.idmarca)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.idmarca,(SelectList)ViewBag.idmarca) 
+            @Html.ValidationMessageFor(model => model.idmarca)
+        </div>
+     </div>  
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idmodelo)
+        </div>
+        <div class="editor-field">
+           @Html.DropDownListFor(model => model.idmodelo,(SelectList)ViewBag.idmodelo) 
+            @Html.ValidationMessageFor(model => model.idmodelo)
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+        <button type="submit" class="btn btn-primary" name="cmd"><i class="fa fa-check"></i>&nbsp;Guardar</button>
+    </div>
+}

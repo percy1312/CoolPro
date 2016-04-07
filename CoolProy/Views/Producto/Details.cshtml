@@ -1,0 +1,54 @@
+﻿@model CoolProy.Models.Encap
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Producto</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.producto.idproducto)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.producto.idproducto)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.producto.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.producto.descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.producto.idmodelo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.producto.idmodelo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.producto.idmarca)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.producto.idmarca)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<script>
+
+    $(document).ready(function () {
+        var idso = $("#label").text();
+        //var idso = document.getElementById('labelidso').html();
+        alert(idso);
+
+    });
+</script>

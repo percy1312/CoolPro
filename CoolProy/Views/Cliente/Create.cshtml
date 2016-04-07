@@ -1,0 +1,209 @@
+﻿@model CoolProy.Models.Cliente
+
+@{ 
+    Layout = "~/Views/Plantillas/plantilla.cshtml";
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>jQuery UI Datepicker - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <link href="css/jquery.rating.css" rel="stylesheet">
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                e.target // newly activated tab
+                e.relatedTarget // previous active tab
+            })
+         
+
+            $('#myTabs a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+
+            $("#btnRegistrarme").click(function () {
+                $('#modalRenzo').modal('show');
+            });
+
+            $(function () { // will trigger when the document is ready
+                $('.datepicker').datepicker(); //Initialise any date pickers
+            });
+
+            function validar() {
+               
+            }
+
+        });
+
+    </script>
+    
+<script>
+    function soloLetras(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+        especiales = "8-37-39-46";
+
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+            return false;
+        }
+    }
+</script>
+  
+</head>
+<body>
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        
+        <div class="span9">
+
+            <ul class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Cliente")">Cliente</a> <span class="divider">/</span>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "SolicitudInsp")">Ir a Solicitud</a>
+                </li>
+            </ul>
+            <br />
+            <br />
+
+             <div class="span6">
+        <div class="editor-label">
+            @Html.Label("Codigo")
+        </div>
+        <div class="editor-field" >
+           <input type="text" placeholder="Nro" readonly="true"/> 
+        </div>
+        </div>
+            
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.nombre)
+            </div>
+            <div class="editor-field">
+                <input name="nombre" id="nombre" type="text" required="required" placeholder="nombre" SIZE=10  onChange="validarSiNumero(this.value);" />
+                @*@Html.EditorFor(model => model.nombre, new { @class = "form-control", @placeholder = "nombre", @id = "nombre"  })*@
+                @Html.ValidationMessageFor(model => model.nombre)
+            </div>
+
+            <div class="span6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.apellidopat)
+                </div>
+                <div class="editor-field">
+                    <input name="apellidopat" required="required type="text" placeholder="apellido paterno" class="form-control" />
+                    @*@Html.EditorFor(model => model.apellidopat, new { @class = "form-control", @placeholder = "apellido paterno", @id = "apellidopat"  })*@
+                    @Html.ValidationMessageFor(model => model.apellidopat)
+                </div>
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.apellidomat)
+            </div>
+            <div class="editor-field">
+                <input name="apellidomat" required="required" type="text" placeholder="apellido materno" class="form-control" />
+                @*@Html.EditorFor(model => model.apellidomat, new { @class = "form-control", @placeholder = "apellido materno", @id = "apellido materno"  })*@
+                @Html.ValidationMessageFor(model => model.apellidomat)
+            </div>
+
+
+            <div class="span6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.direccion)
+                </div>
+                <div class="editor-field">
+                    <input name="direccion" required="" type="text" placeholder="direccion" class="form-control" />
+                    @*@Html.EditorFor(model => model.direccion, new { @class = "form-control", @placeholder = "direccion", @id = "direccion"  })*@
+                    @Html.ValidationMessageFor(model => model.direccion)
+                </div>
+            </div>
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.refedireccion)
+            </div>
+            <div class="editor-field">
+                <input name="refedireccion" required="" type="text" placeholder="referencia" class="form-control" />
+                @*@Html.EditorFor(model => model.refedireccion, new { @class = "form-control", @placeholder = "referencia", @id = "referencia"  })*@
+                @Html.ValidationMessageFor(model => model.refedireccion)
+            </div>
+
+
+            <div class="span6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.telefonono)
+                </div>
+                <div class="editor-field">
+                    <input name="telefonono" required="" type="text" placeholder="telefono" class="form-control" />
+                    @*@Html.EditorFor(model => model.telefonono, new { @class = "form-control", @placeholder = "telefonono", @id = "telefonono" })*@
+                    @Html.ValidationMessageFor(model => model.telefonono)
+                </div>
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.email)
+            </div>
+            <div class="editor-field">
+                 <input  name="email" type="email" required="required" placeholder="email" class="form-control" />
+                   
+                @*@Html.EditorFor(model => model.email, new { @class = "form-control", @placeholder = "email", @id = "email" })*@
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+
+
+            <div class="span6">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.celular)
+                </div>
+                <div class="editor-field">
+                    <input name="celular"  type="text" required="required" placeholder="celular" class="form-control" SIZE=10 id="celular" onChange="validarSiNumero(this.value);" />
+                    @*@Html.EditorFor(model => model.celular, new { @class = "form-control", @placeholder = "celular", @id = "celular" })*@
+                    @Html.ValidationMessageFor(model => model.celular)
+                </div>
+            </div>
+            <div class="span6">
+                <br />
+                <br />
+            </div>
+            <div class="span6">
+                <button type="submit" value="Registrar" class="btn btn-primary pull-left">Crear</button>
+            </div>
+
+            
+   
+
+
+        </div>
+    }
+
+    
+
+</body>
+
+</html> 

@@ -1,0 +1,78 @@
+﻿@model CoolProy.Models.Cliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Cliente</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idcliente)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idcliente)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.apellidopat)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.apellidopat)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.apellidomat)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.apellidomat)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.direccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.direccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.refedireccion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.refedireccion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.telefonono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.telefonono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.celular)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.celular)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
